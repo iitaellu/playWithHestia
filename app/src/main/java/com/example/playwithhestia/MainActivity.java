@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +20,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent startIntent = new Intent(getApplicationContext(), LivingRoomActivity.class);
+                startActivity(startIntent);
+            }
+        });
+
+        TextView signInButton = (TextView) findViewById(R.id.signInTextButton);
+        signInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent startIntent = new Intent(MainActivity.this, SignInActivity.class);
                 startActivity(startIntent);
             }
         });

@@ -2,13 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#2A000000"
+    android:background="#7CFFE563"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".KitchenActivity">
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/sosialisebutton2"
         android:layout_width="59dp"
         android:layout_height="52dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,7 +20,7 @@
         app:srcCompat="@drawable/ic_lonely" />
 
     <ImageButton
-        android:id="@+id/bathroomIB"
+        android:id="@+id/livingroomButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -55,8 +55,8 @@
 
     <TextView
         android:id="@+id/petChatTextView2"
-        android:layout_width="410dp"
-        android:layout_height="137dp"
+        android:layout_width="423dp"
+        android:layout_height="140dp"
         android:background="#B44CAF50"
         android:text="Pet says..."
         android:textColor="#000000"
@@ -74,6 +74,7 @@
         android:layout_height="148dp"
         android:background="#C94CAF50"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -167,9 +168,12 @@
         android:id="@+id/imageView"
         android:layout_width="39dp"
         android:layout_height="39dp"
-        app:srcCompat="@drawable/ic_smelly"
-        tools:layout_editor_absoluteX="274dp"
-        tools:layout_editor_absoluteY="53dp" />
+        android:layout_marginTop="52dp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewMessy2"
+        app:layout_constraintHorizontal_bias="0.7"
+        app:layout_constraintStart_toEndOf="@+id/textViewLonely2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_smelly" />
 
     <TextView
         android:id="@+id/textViewMessy2"
@@ -202,9 +206,9 @@
         android:text="100%"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.727"
-        app:layout_constraintStart_toEndOf="@+id/textViewThirsty2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.531"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -218,10 +222,10 @@
         app:srcCompat="@drawable/ic_hungry" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/petNameKitchen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Needs"
+        android:text="Pet's needs"
         android:textColor="#000000"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -229,7 +233,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/FeedIB"
+        android:id="@+id/feedIB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -97,10 +97,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/petNameLiving"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Needs"
+        android:text="Pet's needs"
         android:textColor="#000000"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -200,7 +200,7 @@
         app:srcCompat="@android:mipmap/sym_def_app_icon" />
 
     <ImageButton
-        android:id="@+id/BathroomIB"
+        android:id="@+id/bathroomIB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -210,7 +210,7 @@
         app:srcCompat="@drawable/ic_left" />
 
     <ImageButton
-        android:id="@+id/KitchenIB"
+        android:id="@+id/kitchenIB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
