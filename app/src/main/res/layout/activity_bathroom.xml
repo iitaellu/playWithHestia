@@ -6,12 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BathroomActivity">
+
     <TextView
         android:id="@+id/backGround3"
         android:layout_width="415dp"
         android:layout_height="146dp"
         android:layout_marginTop="56dp"
-        android:background="#C94CAF50"
+        android:background="#4CAF50"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -40,7 +41,7 @@
         android:id="@+id/petChatTextView3"
         android:layout_width="418dp"
         android:layout_height="139dp"
-        android:background="#B44CAF50"
+        android:background="#4CAF50"
         android:text="Pet says..."
         android:textColor="#000000"
         android:textSize="20sp"
