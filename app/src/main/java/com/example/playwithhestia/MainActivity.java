@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,6 +15,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        EditText email = (EditText) findViewById(R.id.editEmailLogIn);
+        EditText password = (EditText) findViewById(R.id.editPasswordLogIn);
+        Button login = (Button) findViewById(R.id.loginButton);
+        Button signin = (Button) findViewById(R.id.signInButton);
+
 
         Button logInButton = (Button) findViewById(R.id.loginButton);
         logInButton.setOnClickListener(new View.OnClickListener() {
