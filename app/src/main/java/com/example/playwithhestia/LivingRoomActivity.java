@@ -39,18 +39,6 @@ public class LivingRoomActivity extends AppCompatActivity {
             }
         });
 
-
-        //Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
-        //setSupportActionBar(myToolbar);
-
-        //ActionBar actionBar = getSupportActionBar();
-        //actionBar.setTitle("   Living Room");
-
-        //actionBar.setIcon(R.drawable.ic_settings);
-
-        //actionBar.setDisplayUseLogoEnabled(true);
-        //actionBar.setDisplayShowHomeEnabled(true);
-
         ImageButton bathroomIB = (ImageButton) findViewById(R.id.bathroomIB);
         bathroomIB.setOnClickListener(new View.OnClickListener() {
             @Override
