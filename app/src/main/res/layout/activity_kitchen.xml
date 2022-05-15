@@ -72,21 +72,7 @@
         tools:layout_editor_absoluteY="56dp" />
 
     <TextView
-        android:id="@+id/textView6"
-        android:layout_width="128dp"
-        android:layout_height="32dp"
-        android:text="Kitchen"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.349" />
-
-    <TextView
-        android:id="@+id/textViewSmelly2"
+        android:id="@+id/textViewMessy2"
         android:layout_width="74dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
@@ -95,8 +81,8 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.821"
-        app:layout_constraintStart_toEndOf="@+id/textViewBoring2"
-        app:layout_constraintTop_toBottomOf="@+id/textViewMessy2" />
+        app:layout_constraintStart_toEndOf="@+id/textViewLonely2"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSmelly2" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -124,7 +110,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewThirsty2" />
 
     <TextView
-        android:id="@+id/textViewBoring2"
+        android:id="@+id/textViewLonely2"
         android:layout_width="74dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
@@ -134,16 +120,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLonely2" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewboring2" />
 
     <ImageView
         android:id="@+id/imageView13"
         android:layout_width="41dp"
         android:layout_height="46dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/textViewSmelly2"
-        app:layout_constraintHorizontal_bias="0.724"
-        app:layout_constraintStart_toEndOf="@+id/textViewBoring2"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewMessy2"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toEndOf="@+id/textViewLonely2"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:srcCompat="@drawable/ic_messy" />
 
@@ -151,9 +137,9 @@
         android:id="@+id/imageView12"
         android:layout_width="39dp"
         android:layout_height="39dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.373"
+        app:layout_constraintHorizontal_bias="0.376"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView7"
         app:srcCompat="@drawable/ic_lonely" />
@@ -162,15 +148,15 @@
         android:id="@+id/imageView"
         android:layout_width="39dp"
         android:layout_height="39dp"
-        android:layout_marginTop="108dp"
-        app:layout_constraintEnd_toStartOf="@+id/textViewMessy2"
-        app:layout_constraintHorizontal_bias="0.677"
-        app:layout_constraintStart_toEndOf="@+id/textViewLonely2"
+        android:layout_marginTop="96dp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewSmelly2"
+        app:layout_constraintHorizontal_bias="0.766"
+        app:layout_constraintStart_toEndOf="@+id/textViewboring2"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_smelly" />
 
     <TextView
-        android:id="@+id/textViewMessy2"
+        android:id="@+id/textViewSmelly2"
         android:layout_width="74dp"
         android:layout_height="40dp"
         android:layout_marginTop="108dp"
@@ -179,7 +165,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.821"
-        app:layout_constraintStart_toEndOf="@+id/textViewLonely2"
+        app:layout_constraintStart_toEndOf="@+id/textViewboring2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -187,13 +173,13 @@
         android:layout_width="32dp"
         android:layout_height="36dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="104dp"
         app:layout_constraintStart_toEndOf="@+id/textViewThirsty2"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_boring" />
 
     <TextView
-        android:id="@+id/textViewLonely2"
+        android:id="@+id/textViewboring2"
         android:layout_width="74dp"
         android:layout_height="40dp"
         android:layout_marginTop="108dp"
@@ -209,8 +195,8 @@
         android:id="@+id/imageView2"
         android:layout_width="31dp"
         android:layout_height="39dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="96dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_hungry" />
@@ -259,10 +245,10 @@
         android:layout_height="55dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.249"
+        app:layout_constraintHorizontal_bias="0.252"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.711"
+        app:layout_constraintVertical_bias="0.714"
         app:srcCompat="@drawable/ic_messy" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

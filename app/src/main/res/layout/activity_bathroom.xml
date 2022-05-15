@@ -8,9 +8,8 @@
     tools:context=".BathroomActivity">
 
     <TextView
-        android:id="@+id/backGround3"
-        android:layout_width="415dp"
-        android:layout_height="146dp"
+        android:layout_width="430dp"
+        android:layout_height="148dp"
         android:layout_marginTop="56dp"
         android:background="#4CAF50"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,10 +55,9 @@
         android:id="@+id/imageView15"
         android:layout_width="41dp"
         android:layout_height="46dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toStartOf="@+id/textViewMessy3"
-        app:layout_constraintHorizontal_bias="0.909"
+        app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toEndOf="@+id/textViewLonely3"
         app:layout_constraintTop_toBottomOf="@+id/imageView17"
         app:srcCompat="@drawable/ic_messy" />
@@ -82,29 +80,14 @@
         app:layout_constraintVertical_bias="0.341"
         app:srcCompat="@drawable/ic_lonely" />
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="128dp"
-        android:layout_height="32dp"
-        android:text="Bath room"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.035"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.321" />
-
-
 
     <ImageView
         android:id="@+id/imageView14"
         android:layout_width="32dp"
         android:layout_height="45dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toStartOf="@+id/textViewThirsty3"
-        app:layout_constraintHorizontal_bias="0.368"
+        app:layout_constraintHorizontal_bias="0.812"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView19"
         app:srcCompat="@drawable/ic_thirsty" />
@@ -113,15 +96,14 @@
         android:id="@+id/textViewHungry3"
         android:layout_width="74dp"
         android:layout_height="40dp"
-        android:layout_marginStart="52dp"
         android:layout_marginTop="108dp"
         android:text="100%"
         android:textColor="#000000"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/textViewBoring3"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.145"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"  />
 
     <TextView
         android:id="@+id/textViewMessy3"
@@ -132,7 +114,7 @@
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.786"
+        app:layout_constraintHorizontal_bias="0.821"
         app:layout_constraintStart_toEndOf="@+id/textViewLonely3"
         app:layout_constraintTop_toBottomOf="@+id/textViewSmelly3" />
 
@@ -140,12 +122,12 @@
         android:id="@+id/textViewSmelly3"
         android:layout_width="74dp"
         android:layout_height="40dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="108dp"
         android:text="100%"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintHorizontal_bias="0.821"
         app:layout_constraintStart_toEndOf="@+id/textViewBoring3"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -153,9 +135,9 @@
         android:id="@+id/imageView17"
         android:layout_width="39dp"
         android:layout_height="39dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="96dp"
         app:layout_constraintEnd_toStartOf="@+id/textViewSmelly3"
-        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintHorizontal_bias="0.766"
         app:layout_constraintStart_toEndOf="@+id/textViewBoring3"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_smelly" />
@@ -164,9 +146,9 @@
         android:id="@+id/imageView16"
         android:layout_width="39dp"
         android:layout_height="39dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/textViewLonely3"
-        app:layout_constraintHorizontal_bias="0.926"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.376"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView18"
         app:srcCompat="@drawable/ic_lonely" />
@@ -180,7 +162,7 @@
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.557"
+        app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -188,9 +170,8 @@
         android:id="@+id/imageView18"
         android:layout_width="32dp"
         android:layout_height="36dp"
-        android:layout_marginTop="108dp"
-        app:layout_constraintEnd_toStartOf="@+id/textViewBoring3"
-        app:layout_constraintHorizontal_bias="0.4"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="104dp"
         app:layout_constraintStart_toEndOf="@+id/textViewHungry3"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_boring" />
@@ -199,9 +180,8 @@
         android:id="@+id/imageView19"
         android:layout_width="31dp"
         android:layout_height="39dp"
-        android:layout_marginTop="108dp"
-        app:layout_constraintEnd_toStartOf="@+id/textViewHungry3"
-        app:layout_constraintHorizontal_bias="0.333"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="96dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_hungry" />
@@ -223,12 +203,13 @@
         android:id="@+id/textViewThirsty3"
         android:layout_width="74dp"
         android:layout_height="40dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="56dp"
         android:text="100%"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView16"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewHungry3" />
 
@@ -236,12 +217,12 @@
         android:id="@+id/textViewLonely3"
         android:layout_width="74dp"
         android:layout_height="40dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:text="100%"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.557"
+        app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewBoring3" />
 
@@ -254,7 +235,7 @@
         app:layout_constraintHorizontal_bias="0.075"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.435"
+        app:layout_constraintVertical_bias="0.371"
         app:srcCompat="@drawable/ic_messy" />
 
     <ImageButton
