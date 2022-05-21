@@ -18,6 +18,7 @@ import java.io.IOException;
 
 public class BathroomActivity extends AppCompatActivity {
     String petFile = ".petProfil.csv";
+    ImageView pet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,31 +26,7 @@ public class BathroomActivity extends AppCompatActivity {
         setContentView(R.layout.activity_bathroom);
         ImageView profile = (ImageView) findViewById(R.id.profile);
         ImageView settings = (ImageView) findViewById(R.id.settings);
-        TextView room = (TextView) findViewById(R.id.room);
-
-        FirebaseAuth fAuth = FirebaseAuth.getInstance();
-        String person = fAuth.getCurrentUser().getUid();
-        TextView header = (TextView) findViewById(R.id.petNameBath);
-        TextView hungry = (TextView) findViewById(R.id.textViewThirsty3);
-        TextView thirsty = (TextView) findViewById(R.id.textViewHungry3);
-        TextView boring = (TextView) findViewById(R.id.textViewBoring3);
-        TextView lonely = (TextView) findViewById(R.id.textViewLonely3);
-        TextView smelly = (TextView) findViewById(R.id.textViewSmelly3);
-        TextView messy = (TextView) findViewById(R.id.textViewMessy3);
-
-        String[] petInfo = readFile(petFile,person);
-        header.setText(petInfo[0] + "'s needs");
-        hungry.setText(petInfo[1]);
-        thirsty.setText(petInfo[2]);
-        boring.setText(petInfo[3]);
-        lonely.setText(petInfo[4]);
-        smelly.setText(petInfo[5]);
-        messy.setText(petInfo[6]);
-
-        room.setText("Living room");
-
-        ImageView pet = (ImageView) findViewById(R.id.PETIMAGE3);
-        pet.setImageResource(R.drawable.hestia);
+        setView();
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,5 +104,34 @@ public class BathroomActivity extends AppCompatActivity {
         }
         String[] info = null;
         return info;
+    }
+
+    public void setView(){
+        TextView room = (TextView) findViewById(R.id.room);
+
+        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+        String person = fAuth.getCurrentUser().getUid();
+        TextView header = (TextView) findViewById(R.id.petNameBath);
+        TextView hungry = (TextView) findViewById(R.id.textViewThirsty3);
+        TextView thirsty = (TextView) findViewById(R.id.textViewHungry3);
+        TextView boring = (TextView) findViewById(R.id.textViewBoring3);
+        TextView lonely = (TextView) findViewById(R.id.textViewLonely3);
+        TextView smelly = (TextView) findViewById(R.id.textViewSmelly3);
+        TextView messy = (TextView) findViewById(R.id.textViewMessy3);
+
+        String[] petInfo = readFile(petFile,person);
+        header.setText(petInfo[0] + "'s needs");
+        hungry.setText(petInfo[1]);
+        thirsty.setText(petInfo[2]);
+        boring.setText(petInfo[3]);
+        lonely.setText(petInfo[4]);
+        smelly.setText(petInfo[5]);
+        messy.setText(petInfo[6]);
+
+        room.setText("Living room");
+
+        pet = (ImageView) findViewById(R.id.PETIMAGE3);
+        pet.setImageResource(R.drawable.hestia);
+        return;
     }
 }

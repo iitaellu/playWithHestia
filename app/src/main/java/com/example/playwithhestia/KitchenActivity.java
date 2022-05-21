@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -18,6 +19,7 @@ import java.io.IOException;
 
 public class KitchenActivity extends AppCompatActivity {
     String petFile = ".petProfil.csv";
+    ImageView pet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,31 +28,10 @@ public class KitchenActivity extends AppCompatActivity {
 
         ImageView profile = (ImageView) findViewById(R.id.profile);
         ImageView settings = (ImageView) findViewById(R.id.settings);
-        TextView room = (TextView) findViewById(R.id.room);
+        pet = (ImageView) findViewById(R.id.PETIMAGE2);
 
-        FirebaseAuth fAuth = FirebaseAuth.getInstance();
-        String person = fAuth.getCurrentUser().getUid();
-        TextView header = (TextView) findViewById(R.id.petNameKitchen);
-        TextView hungry = (TextView) findViewById(R.id.textViewThirsty2);
-        TextView thirsty = (TextView) findViewById(R.id.textViewHungry2);
-        TextView boring = (TextView) findViewById(R.id.textViewboring2);
-        TextView lonely = (TextView) findViewById(R.id.textViewLonely2);
-        TextView smelly = (TextView) findViewById(R.id.textViewSmelly2);
-        TextView messy = (TextView) findViewById(R.id.textViewMessy2);
+        setView();
 
-        String[] petInfo = readFile(petFile,person);
-        header.setText(petInfo[0] + "'s needs");
-        hungry.setText(petInfo[1]);
-        thirsty.setText(petInfo[2]);
-        boring.setText(petInfo[3]);
-        lonely.setText(petInfo[4]);
-        smelly.setText(petInfo[5]);
-        messy.setText(petInfo[6]);
-
-        room.setText("Kitchen");
-
-        ImageView pet = (ImageView) findViewById(R.id.PETIMAGE2);
-        pet.setImageResource(R.drawable.hestia);
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,7 +67,19 @@ public class KitchenActivity extends AppCompatActivity {
         feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Feed", Toast.LENGTH_LONG).show();
+                pet.setImageResource(R.drawable.hestia);
+                //nex counDownTimer part is partly from https://www.codegrepper.com/code-examples/java/countdown+timer+android+studio
+                new CountDownTimer(5000, 100) {
+                    @Override
+                    public void onTick(long l) {
+                        pet.setImageResource(R.drawable.hestia_eat);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        pet.setImageResource(R.drawable.hestia);
+                    }
+                }.start();
             }
         });
 
@@ -128,5 +121,33 @@ public class KitchenActivity extends AppCompatActivity {
         }
         String[] info = null;
         return info;
+    }
+
+    public void setView(){
+        TextView room = (TextView) findViewById(R.id.room);
+
+        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+        String person = fAuth.getCurrentUser().getUid();
+        TextView header = (TextView) findViewById(R.id.petNameKitchen);
+        TextView hungry = (TextView) findViewById(R.id.textViewThirsty2);
+        TextView thirsty = (TextView) findViewById(R.id.textViewHungry2);
+        TextView boring = (TextView) findViewById(R.id.textViewboring2);
+        TextView lonely = (TextView) findViewById(R.id.textViewLonely2);
+        TextView smelly = (TextView) findViewById(R.id.textViewSmelly2);
+        TextView messy = (TextView) findViewById(R.id.textViewMessy2);
+
+        String[] petInfo = readFile(petFile,person);
+        header.setText(petInfo[0] + "'s needs");
+        hungry.setText(petInfo[1]);
+        thirsty.setText(petInfo[2]);
+        boring.setText(petInfo[3]);
+        lonely.setText(petInfo[4]);
+        smelly.setText(petInfo[5]);
+        messy.setText(petInfo[6]);
+
+        room.setText("Kitchen");
+
+        pet = (ImageView) findViewById(R.id.PETIMAGE2);
+        pet.setImageResource(R.drawable.hestia);
     }
 }
