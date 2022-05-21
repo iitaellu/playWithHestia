@@ -50,6 +50,8 @@ public class LivingRoomActivity extends AppCompatActivity {
         smelly.setText(petInfo[5]);
         messy.setText(petInfo[6]);
 
+        ImageView pet = (ImageView) findViewById(R.id.PETIMAGE);
+        pet.setImageResource(R.drawable.hestia);
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override

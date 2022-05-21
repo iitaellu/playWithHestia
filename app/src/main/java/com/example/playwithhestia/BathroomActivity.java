@@ -47,6 +47,10 @@ public class BathroomActivity extends AppCompatActivity {
         messy.setText(petInfo[6]);
 
         room.setText("Living room");
+
+        ImageView pet = (ImageView) findViewById(R.id.PETIMAGE3);
+        pet.setImageResource(R.drawable.hestia);
+
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

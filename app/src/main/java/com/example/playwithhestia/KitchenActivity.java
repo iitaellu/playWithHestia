@@ -48,6 +48,9 @@ public class KitchenActivity extends AppCompatActivity {
         messy.setText(petInfo[6]);
 
         room.setText("Kitchen");
+
+        ImageView pet = (ImageView) findViewById(R.id.PETIMAGE2);
+        pet.setImageResource(R.drawable.hestia);
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
