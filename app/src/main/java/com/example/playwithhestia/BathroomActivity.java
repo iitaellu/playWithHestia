@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,10 +17,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Calendar;
 
 public class BathroomActivity extends AppCompatActivity {
     String petFile = ".petProfil.csv";
     ImageView pet;
+    TextView chat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +43,29 @@ public class BathroomActivity extends AppCompatActivity {
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Settings", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Settings", Toast.LENGTH_LONG).show();
+                //Following popUpMenu part from https://www.javatpoint.com/android-popup-menu-example
+                PopupMenu menu = new PopupMenu(getApplicationContext(), settings);
+                menu.getMenuInflater().inflate(R.menu.popup_menu, menu.getMenu());
+
+                menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+
+                        switch(menuItem.getItemId()){
+                            case R.id.set:
+                                Toast.makeText(getApplicationContext(), "Settings", Toast.LENGTH_LONG).show();
+                                return true;
+
+                            case R.id.logout:
+                                Intent startIntent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(startIntent);
+                                return true;
+                        }
+                        return false;
+                    }
+                });
+                menu.show();
             }
         });
 
@@ -118,6 +144,9 @@ public class BathroomActivity extends AppCompatActivity {
         TextView lonely = (TextView) findViewById(R.id.textViewLonely3);
         TextView smelly = (TextView) findViewById(R.id.textViewSmelly3);
         TextView messy = (TextView) findViewById(R.id.textViewMessy3);
+        chat = (TextView) findViewById(R.id.petChatTextView3);
+        pet = (ImageView) findViewById(R.id.PETIMAGE3);
+
 
         String[] petInfo = readFile(petFile,person);
         header.setText(petInfo[0] + "'s needs");
@@ -128,10 +157,21 @@ public class BathroomActivity extends AppCompatActivity {
         smelly.setText(petInfo[5]);
         messy.setText(petInfo[6]);
 
-        room.setText("Living room");
+        room.setText("Bathroom");
 
-        pet = (ImageView) findViewById(R.id.PETIMAGE3);
-        pet.setImageResource(R.drawable.hestia);
+        Calendar now = Calendar.getInstance();
+        int hours = now.get(Calendar.HOUR_OF_DAY);
+
+        if (hours >= 21 || hours <=6){
+            pet.setImageResource(R.drawable.hestia_sleeping);
+            chat.setText("Zzz...");
+
+        }
+        else {
+            pet.setImageResource(R.drawable.hestia_neutral);
+            chat.setText("Hello!");
+        }
+
         return;
     }
 }

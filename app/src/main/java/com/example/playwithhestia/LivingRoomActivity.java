@@ -5,10 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,11 +20,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Calendar;
 
 public class LivingRoomActivity extends AppCompatActivity {
     String petFile = ".petProfil.csv";
     int count=0;
     ImageView pet;
+    TextView chat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +50,32 @@ public class LivingRoomActivity extends AppCompatActivity {
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Settings", Toast.LENGTH_LONG).show();
-            }
-        });
+            //Following popUpMenu part from https://www.javatpoint.com/android-popup-menu-example
+            //And part from https://www.youtube.com/watch?v=MCeWm8qu0sw
+            PopupMenu menu = new PopupMenu(getApplicationContext(), settings);
+            menu.getMenuInflater().inflate(R.menu.popup_menu, menu.getMenu());
+
+            menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem menuItem) {
+
+                    switch(menuItem.getItemId()){
+                        case R.id.set:
+                            Intent startIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+                            startActivity(startIntent);
+                            return true;
+
+                        case R.id.logout:
+                            Intent Intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(Intent);
+                            return true;
+                    }
+                    return false;
+                }
+            });
+            menu.show();
+        }
+    });
 
         ImageButton bathroomIB = (ImageButton) findViewById(R.id.bathroomIB);
         bathroomIB.setOnClickListener(new View.OnClickListener() {
@@ -63,15 +91,6 @@ public class LivingRoomActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent startIntent = new Intent(getApplicationContext(), KitchenActivity.class);
-                startActivity(startIntent);
-            }
-        });
-
-        Button exitButton = (Button) findViewById(R.id.exitButton);
-        exitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent startIntent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(startIntent);
             }
         });
@@ -148,6 +167,8 @@ public class LivingRoomActivity extends AppCompatActivity {
         TextView lonely = (TextView) findViewById(R.id.textViewLonely);
         TextView smelly = (TextView) findViewById(R.id.textViewSmelly);
         TextView messy = (TextView) findViewById(R.id.textViewMessy);
+        chat = (TextView) findViewById(R.id.petChatTextView);
+        pet = (ImageView) findViewById(R.id.PETIMAGE);
 
 
         room.setText("Living room");
@@ -161,8 +182,18 @@ public class LivingRoomActivity extends AppCompatActivity {
         smelly.setText(petInfo[5]);
         messy.setText(petInfo[6]);
 
-        pet = (ImageView) findViewById(R.id.PETIMAGE);
-        pet.setImageResource(R.drawable.hestia_neutral);
+        Calendar now = Calendar.getInstance();
+        int hours = now.get(Calendar.HOUR_OF_DAY);
+
+        if (hours >= 21 || hours <=6){
+            pet.setImageResource(R.drawable.hestia_sleeping);
+            chat.setText("Zzz...");
+
+        }
+        else {
+            pet.setImageResource(R.drawable.hestia_neutral);
+            chat.setText("Hello!");
+        }
 
         return;
     }

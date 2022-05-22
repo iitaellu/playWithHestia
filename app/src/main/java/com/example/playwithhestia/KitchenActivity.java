@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,10 +18,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Calendar;
 
 public class KitchenActivity extends AppCompatActivity {
     String petFile = ".petProfil.csv";
     ImageView pet;
+    TextView chat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +46,29 @@ public class KitchenActivity extends AppCompatActivity {
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Settings", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Settings", Toast.LENGTH_LONG).show();
+                //Following popUpMenu part from https://www.javatpoint.com/android-popup-menu-example
+                PopupMenu menu = new PopupMenu(getApplicationContext(), settings);
+                menu.getMenuInflater().inflate(R.menu.popup_menu, menu.getMenu());
+
+                menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+
+                        switch(menuItem.getItemId()){
+                            case R.id.set:
+                                Toast.makeText(getApplicationContext(), "Settings", Toast.LENGTH_LONG).show();
+                                return true;
+
+                            case R.id.logout:
+                                Intent startIntent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(startIntent);
+                                return true;
+                        }
+                        return false;
+                    }
+                });
+                menu.show();
             }
         });
 
@@ -67,17 +93,18 @@ public class KitchenActivity extends AppCompatActivity {
         feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pet.setImageResource(R.drawable.hestia);
+                pet.setImageResource(R.drawable.hestia_eat);
+                chat.setText("Yammy! Purr...");
                 //nex counDownTimer part is partly from https://www.codegrepper.com/code-examples/java/countdown+timer+android+studio
                 new CountDownTimer(5000, 100) {
                     @Override
                     public void onTick(long l) {
-                        pet.setImageResource(R.drawable.hestia_eat);
                     }
 
                     @Override
                     public void onFinish() {
                         pet.setImageResource(R.drawable.hestia);
+                        chat.setText(":)");
                     }
                 }.start();
             }
@@ -87,8 +114,20 @@ public class KitchenActivity extends AppCompatActivity {
         drink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Give water", Toast.LENGTH_LONG).show();
-            }
+                pet.setImageResource(R.drawable.hestia_drink);
+                chat.setText("Slurp!");
+                //nex counDownTimer part is partly from https://www.codegrepper.com/code-examples/java/countdown+timer+android+studio
+                new CountDownTimer(5000, 100) {
+                    @Override
+                    public void onTick(long l) {
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        pet.setImageResource(R.drawable.hestia);
+                        chat.setText(":)");
+                    }
+                }.start();            }
         });
     }
 
@@ -135,6 +174,9 @@ public class KitchenActivity extends AppCompatActivity {
         TextView lonely = (TextView) findViewById(R.id.textViewLonely2);
         TextView smelly = (TextView) findViewById(R.id.textViewSmelly2);
         TextView messy = (TextView) findViewById(R.id.textViewMessy2);
+        chat = (TextView) findViewById(R.id.petChatTextView2);
+        pet = (ImageView) findViewById(R.id.PETIMAGE2);
+
 
         String[] petInfo = readFile(petFile,person);
         header.setText(petInfo[0] + "'s needs");
@@ -147,7 +189,18 @@ public class KitchenActivity extends AppCompatActivity {
 
         room.setText("Kitchen");
 
-        pet = (ImageView) findViewById(R.id.PETIMAGE2);
-        pet.setImageResource(R.drawable.hestia);
+        Calendar now = Calendar.getInstance();
+        int hours = now.get(Calendar.HOUR_OF_DAY);
+
+        if (hours >= 21 || hours <=6){
+            pet.setImageResource(R.drawable.hestia_sleeping);
+            chat.setText("Zzz...");
+
+        }
+        else {
+            pet.setImageResource(R.drawable.hestia_neutral);
+            chat.setText("Hello!");
+        }
+
     }
 }

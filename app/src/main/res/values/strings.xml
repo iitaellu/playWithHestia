@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Play With Hestia</string>
     <string name="nameTextView">TextView</string>
+
+    <string-array name="list">
+        <item>Setting</item>
+        <item>Log Out</item>
+    </string-array>
 </resources>
