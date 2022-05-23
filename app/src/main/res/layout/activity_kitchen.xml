@@ -228,28 +228,28 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/feedIB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/waterCup"
+        android:layout_width="147dp"
+        android:layout_height="82dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.085"
+        app:layout_constraintHorizontal_bias="0.871"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.719"
-        app:srcCompat="@drawable/ic_hungry" />
+        app:layout_constraintVertical_bias="0.758"
+        app:srcCompat="@drawable/water_cup" />
 
-    <ImageButton
-        android:id="@+id/drinkIB"
-        android:layout_width="54dp"
-        android:layout_height="55dp"
+    <ImageView
+        android:id="@+id/foodBowl"
+        android:layout_width="145dp"
+        android:layout_height="86dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.252"
+        app:layout_constraintHorizontal_bias="0.093"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.714"
-        app:srcCompat="@drawable/ic_messy" />
+        app:layout_constraintVertical_bias="0.756"
+        app:srcCompat="@drawable/food_bowl" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

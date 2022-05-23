@@ -102,9 +102,8 @@ public class LivingRoomActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Socialise", Toast.LENGTH_LONG).show();
             }
         });
-
-        ImageButton play = (ImageButton) findViewById(R.id.playButton);
-        play.setOnClickListener(new View.OnClickListener() {
+        ImageView toys = (ImageView) findViewById(R.id.toys);
+        toys.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "play", Toast.LENGTH_LONG).show();

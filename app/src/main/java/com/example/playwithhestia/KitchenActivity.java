@@ -89,11 +89,14 @@ public class KitchenActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton feed = (ImageButton) findViewById(R.id.feedIB);
+        ImageView feed = (ImageView) findViewById(R.id.foodBowl);
+        //ImageButton feed = (ImageButton) findViewById(R.id.feedIB);
         feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 pet.setImageResource(R.drawable.hestia_eat);
+                ImageView fe = (ImageView) findViewById(R.id.foodBowl);
+                fe.setImageResource(R.drawable.empty);
                 chat.setText("Yammy! Purr...");
                 //nex counDownTimer part is partly from https://www.codegrepper.com/code-examples/java/countdown+timer+android+studio
                 new CountDownTimer(5000, 100) {
@@ -105,16 +108,20 @@ public class KitchenActivity extends AppCompatActivity {
                     public void onFinish() {
                         pet.setImageResource(R.drawable.hestia);
                         chat.setText(":)");
+                        fe.setImageResource(R.drawable.food_bowl);
                     }
                 }.start();
             }
         });
 
-        ImageButton drink = (ImageButton) findViewById(R.id.drinkIB);
+        ImageView drink = (ImageView) findViewById(R.id.waterCup);
+        //ImageButton drink = (ImageButton) findViewById(R.id.drinkIB);
         drink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 pet.setImageResource(R.drawable.hestia_drink);
+                ImageView dr = (ImageView) findViewById(R.id.waterCup);
+                dr.setImageResource(R.drawable.empty);
                 chat.setText("Slurp!");
                 //nex counDownTimer part is partly from https://www.codegrepper.com/code-examples/java/countdown+timer+android+studio
                 new CountDownTimer(5000, 100) {
@@ -126,6 +133,7 @@ public class KitchenActivity extends AppCompatActivity {
                     public void onFinish() {
                         pet.setImageResource(R.drawable.hestia);
                         chat.setText(":)");
+                        dr.setImageResource(R.drawable.water_cup);
                     }
                 }.start();            }
         });
