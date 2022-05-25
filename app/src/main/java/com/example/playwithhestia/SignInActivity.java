@@ -27,6 +27,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -123,7 +127,8 @@ public class SignInActivity extends AppCompatActivity {
 
     public void createFile(String person){
         try {
-            String content = "Name;Pet;\n";
+            String content = "Date;Name;Pet;\n";
+
             File file = new File(this.getFilesDir().getPath()+"/"+person+fileName);
 
             if(!file.exists()){
@@ -144,7 +149,11 @@ public class SignInActivity extends AppCompatActivity {
     public void writeFile(String newname, String person) {
         try (FileWriter fw = new FileWriter(this.getFilesDir().getPath() +"/"+ person+fileName, true)) {
             BufferedWriter writer = new BufferedWriter(fw);
-            writer.append(newname+";");
+            Calendar calendar = Calendar.getInstance();
+            String current = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(calendar.getTime());
+            SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+            String date = format.format(Date.parse(current));
+            writer.append(date+";"+newname+";");
             writer.flush();
             writer.close();
         } catch (IOException e) {

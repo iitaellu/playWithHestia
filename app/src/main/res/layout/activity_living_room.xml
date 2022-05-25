@@ -198,9 +198,10 @@
         android:layout_height="309dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.549"
+        app:layout_constraintVertical_bias="0.599"
         app:srcCompat="@android:mipmap/sym_def_app_icon" />
 
     <ImageButton
@@ -208,7 +209,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/PETIMAGE"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.038"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_left" />
@@ -219,21 +221,10 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/PETIMAGE"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_right" />
-
-    <ImageButton
-        android:id="@+id/sosialisebuttonLivingRoom"
-        android:layout_width="59dp"
-        android:layout_height="52dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.965"
+        app:layout_constraintHorizontal_bias="0.955"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.34"
-        app:srcCompat="@drawable/ic_lonely" />
+        app:srcCompat="@drawable/ic_right" />
 
     <ImageView
         android:id="@+id/toys"
@@ -246,6 +237,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/toys" />
+
+    <ImageView
+        android:id="@+id/speak"
+        android:layout_width="102dp"
+        android:layout_height="73dp"
+        app:layout_constraintBottom_toTopOf="@+id/petChatTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/backGround"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/speak" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

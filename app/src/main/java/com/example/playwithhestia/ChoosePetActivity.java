@@ -18,6 +18,10 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class ChoosePetActivity extends AppCompatActivity {
     String fileName = ".Profil.csv";
@@ -64,8 +68,12 @@ public class ChoosePetActivity extends AppCompatActivity {
     //Create new file for users pet information
     public void createFile(String name, String person){
         try {
-            String contentOne = "Name;Hungry;Thirsty;Boring;Socialise;Smelly;Messy;\n";
-            String contentTwo= (name+";70%;50%;80%;80%;80%;100%;90%;\n");
+            String contentOne = "Date;Name;Hungry;Thirsty;Boring;Socialise;Smelly;Messy;\n";
+            Calendar calendar = Calendar.getInstance();
+            String current = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(calendar.getTime());
+            SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+            String date = format.format(Date.parse(current));
+            String contentTwo= (date+";"+name+";15;10;16;16;8;9;\n");
             File file = new File(this.getFilesDir().getPath()+"/"+person+petfilename);
 
             if(!file.exists()){

@@ -7,7 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".BathroomActivity">
 
+    <ImageView
+        android:id="@+id/speak3"
+        android:layout_width="102dp"
+        android:layout_height="73dp"
+        app:layout_constraintBottom_toTopOf="@+id/petChatTextView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/speak" />
+
     <TextView
+        android:id="@+id/textView12"
         android:layout_width="430dp"
         android:layout_height="148dp"
         android:layout_marginTop="56dp"
@@ -16,15 +29,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <ImageButton
-        android:id="@+id/livingroomIB"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/PETIMAGE3"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_right" />
+
+
 
     <ImageView
         android:id="@+id/PETIMAGE3"
@@ -32,11 +38,22 @@
         android:layout_height="309dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.789"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.549"
+        app:layout_constraintVertical_bias="0.594"
         app:srcCompat="@android:mipmap/sym_def_app_icon" />
-
+    <ImageButton
+        android:id="@+id/livingroomIB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.526"
+        app:srcCompat="@drawable/ic_right" />
     <TextView
         android:id="@+id/petChatTextView3"
         android:layout_width="418dp"
@@ -68,18 +85,6 @@
         layout="@layout/toolbar"
         tools:layout_editor_absoluteX="-2dp"
         tools:layout_editor_absoluteY="59dp" />
-
-    <ImageButton
-        android:id="@+id/sosialicebutton3"
-        android:layout_width="59dp"
-        android:layout_height="52dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.341"
-        app:srcCompat="@drawable/ic_lonely" />
 
 
     <ImageView
@@ -227,28 +232,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewBoring3" />
 
-    <ImageButton
-        android:id="@+id/sandBoxButton"
-        android:layout_width="68dp"
-        android:layout_height="79dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.075"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.371"
-        app:srcCompat="@drawable/ic_messy" />
 
-    <ImageButton
-        android:id="@+id/bathButton"
-        android:layout_width="74dp"
-        android:layout_height="82dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/bath"
+        android:layout_width="142dp"
+        android:layout_height="163dp"
+        app:layout_constraintBottom_toTopOf="@+id/petChatTextView3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.077"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.679"
-        app:srcCompat="@drawable/ic_smelly" />
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/bath" />
+
+    <ImageView
+        android:id="@+id/box"
+        android:layout_width="142dp"
+        android:layout_height="74dp"
+        app:layout_constraintBottom_toTopOf="@+id/petChatTextView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView12"
+        app:layout_constraintVertical_bias="0.121"
+        app:srcCompat="@drawable/bax_clean" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

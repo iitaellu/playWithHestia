@@ -81,7 +81,7 @@ public class KitchenActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton socialise = (ImageButton) findViewById(R.id.sosialisebutton2);
+        ImageView socialise = (ImageView) findViewById(R.id.speak2);
         socialise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -173,28 +173,7 @@ public class KitchenActivity extends AppCompatActivity {
     public void setView(){
         TextView room = (TextView) findViewById(R.id.room);
 
-        FirebaseAuth fAuth = FirebaseAuth.getInstance();
-        String person = fAuth.getCurrentUser().getUid();
-        TextView header = (TextView) findViewById(R.id.petNameKitchen);
-        TextView hungry = (TextView) findViewById(R.id.textViewThirsty2);
-        TextView thirsty = (TextView) findViewById(R.id.textViewHungry2);
-        TextView boring = (TextView) findViewById(R.id.textViewboring2);
-        TextView lonely = (TextView) findViewById(R.id.textViewLonely2);
-        TextView smelly = (TextView) findViewById(R.id.textViewSmelly2);
-        TextView messy = (TextView) findViewById(R.id.textViewMessy2);
-        chat = (TextView) findViewById(R.id.petChatTextView2);
-        pet = (ImageView) findViewById(R.id.PETIMAGE2);
-
-
-        String[] petInfo = readFile(petFile,person);
-        header.setText(petInfo[0] + "'s needs");
-        hungry.setText(petInfo[1]);
-        thirsty.setText(petInfo[2]);
-        boring.setText(petInfo[3]);
-        lonely.setText(petInfo[4]);
-        smelly.setText(petInfo[5]);
-        messy.setText(petInfo[6]);
-
+        setNeeds();
         room.setText("Kitchen");
 
         Calendar now = Calendar.getInstance();
@@ -210,5 +189,47 @@ public class KitchenActivity extends AppCompatActivity {
             chat.setText("Hello!");
         }
 
+    }
+
+    public void setNeeds(){
+        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+        String person = fAuth.getCurrentUser().getUid();
+        TextView header = (TextView) findViewById(R.id.petNameKitchen);
+        TextView hungry = (TextView) findViewById(R.id.textViewThirsty2);
+        TextView thirsty = (TextView) findViewById(R.id.textViewHungry2);
+        TextView boring = (TextView) findViewById(R.id.textViewboring2);
+        TextView lonely = (TextView) findViewById(R.id.textViewLonely2);
+        TextView smelly = (TextView) findViewById(R.id.textViewSmelly2);
+        TextView messy = (TextView) findViewById(R.id.textViewMessy2);
+        chat = (TextView) findViewById(R.id.petChatTextView2);
+        pet = (ImageView) findViewById(R.id.PETIMAGE2);
+
+
+        Integer hunk, thirk, bork, lonk, smelk, mesk;
+        String[] petInfo = readFile(petFile,person);
+        header.setText(petInfo[1] + "'s needs");
+        hunk = Integer.parseInt(petInfo[2]);
+        hunk= (hunk*100/20);
+        hungry.setText(hunk+"%");
+
+        thirk = Integer.parseInt(petInfo[3]);
+        thirk = (thirk*100/20);
+        thirsty.setText(thirk+"%");
+
+        bork = Integer.parseInt(petInfo[4]);
+        bork = (bork*100/20);
+        boring.setText(bork+"%");
+
+        lonk = Integer.parseInt(petInfo[5]);
+        lonk = (lonk*100/20);
+        lonely.setText(lonk+"%");
+
+        smelk = Integer.parseInt(petInfo[6]);
+        smelk = (smelk*100/10);
+        smelly.setText(smelk+"%");
+
+        mesk = Integer.parseInt(petInfo[7]);
+        mesk = (mesk*100/10);
+        messy.setText(mesk+"%");
     }
 }

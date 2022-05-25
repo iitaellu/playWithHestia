@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -78,21 +79,38 @@ public class BathroomActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton socialise = (ImageButton) findViewById(R.id.sosialicebutton3);
+        ImageView socialise = (ImageView) findViewById(R.id.speak3);
         socialise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "Socialise", Toast.LENGTH_LONG).show();
             }
         });
-        ImageButton bath = (ImageButton) findViewById(R.id.bathButton);
+        ImageView bath = (ImageView) findViewById(R.id.bath);
         bath.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "give bath", Toast.LENGTH_LONG).show();
+
+                pet.setImageResource(R.drawable.hestia_bath);
+                ImageView ba = (ImageView) findViewById(R.id.bath);
+                ba.setImageResource(R.drawable.empty);
+                chat.setText("Purr...");
+                //nex counDownTimer part is partly from https://www.codegrepper.com/code-examples/java/countdown+timer+android+studio
+                new CountDownTimer(5000, 100) {
+                    @Override
+                    public void onTick(long l) {
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        pet.setImageResource(R.drawable.hestia_neutral);
+                        chat.setText(":)");
+                        ba.setImageResource(R.drawable.bath);
+                    }
+                }.start();
             }
         });
-        ImageButton box = (ImageButton) findViewById(R.id.sandBoxButton);
+        ImageView box = (ImageView) findViewById(R.id.box);
         box.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -135,27 +153,10 @@ public class BathroomActivity extends AppCompatActivity {
     public void setView(){
         TextView room = (TextView) findViewById(R.id.room);
 
-        FirebaseAuth fAuth = FirebaseAuth.getInstance();
-        String person = fAuth.getCurrentUser().getUid();
-        TextView header = (TextView) findViewById(R.id.petNameBath);
-        TextView hungry = (TextView) findViewById(R.id.textViewThirsty3);
-        TextView thirsty = (TextView) findViewById(R.id.textViewHungry3);
-        TextView boring = (TextView) findViewById(R.id.textViewBoring3);
-        TextView lonely = (TextView) findViewById(R.id.textViewLonely3);
-        TextView smelly = (TextView) findViewById(R.id.textViewSmelly3);
-        TextView messy = (TextView) findViewById(R.id.textViewMessy3);
         chat = (TextView) findViewById(R.id.petChatTextView3);
         pet = (ImageView) findViewById(R.id.PETIMAGE3);
+        setNeeds();
 
-
-        String[] petInfo = readFile(petFile,person);
-        header.setText(petInfo[0] + "'s needs");
-        hungry.setText(petInfo[1]);
-        thirsty.setText(petInfo[2]);
-        boring.setText(petInfo[3]);
-        lonely.setText(petInfo[4]);
-        smelly.setText(petInfo[5]);
-        messy.setText(petInfo[6]);
 
         room.setText("Bathroom");
 
@@ -173,5 +174,44 @@ public class BathroomActivity extends AppCompatActivity {
         }
 
         return;
+    }
+
+    public void setNeeds(){
+        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+        String person = fAuth.getCurrentUser().getUid();
+        TextView header = (TextView) findViewById(R.id.petNameBath);
+        TextView hungry = (TextView) findViewById(R.id.textViewHungry3);
+        TextView thirsty = (TextView) findViewById(R.id.textViewThirsty3);
+        TextView boring = (TextView) findViewById(R.id.textViewBoring3);
+        TextView lonely = (TextView) findViewById(R.id.textViewLonely3);
+        TextView smelly = (TextView) findViewById(R.id.textViewSmelly3);
+        TextView messy = (TextView) findViewById(R.id.textViewMessy3);
+        Integer hunb, thirb, borb, lonb, smelb, mesb;
+
+        String[] petInfo = readFile(petFile,person);
+        header.setText(petInfo[1] + "'s needs");
+        hunb = Integer.parseInt(petInfo[2]);
+        hunb = (hunb*100/20);
+        hungry.setText(hunb+"%");
+
+        thirb = Integer.parseInt(petInfo[3]);
+        thirb = (thirb*100/20);
+        thirsty.setText(thirb+"%");
+
+        borb = Integer.parseInt(petInfo[4]);
+        borb = (borb*100/20);
+        boring.setText(borb+"%");
+
+        lonb = Integer.parseInt(petInfo[5]);
+        lonb = (lonb*100/20);
+        lonely.setText(lonb+"%");
+
+        smelb = Integer.parseInt(petInfo[6]);
+        smelb = (smelb*100/10);
+        smelly.setText(smelb+"%");
+
+        mesb = Integer.parseInt(petInfo[7]);
+        mesb = (mesb*100/10);
+        messy.setText(mesb+"%");
     }
 }
