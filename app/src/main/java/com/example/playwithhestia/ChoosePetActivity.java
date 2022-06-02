@@ -68,11 +68,11 @@ public class ChoosePetActivity extends AppCompatActivity {
     //Create new file for users pet information
     public void createFile(String name, String person){
         try {
-            String contentOne = "Date;Name;Hungry;Thirsty;Boring;Socialise;Smelly;Messy;\n";
+            String contentOne = "Date;Time;Name;Hungry;Thirsty;Boring;Socialise;Smelly;Messy;\n";
             Calendar calendar = Calendar.getInstance();
-            String current = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(calendar.getTime());
-            SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-            String date = format.format(Date.parse(current));
+            SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy;HH:mm");
+            String date = format.format(calendar.getTime());
+            //String time = timeFormat.format(Date.parse(current));
             String contentTwo= (date+";"+name+";15;10;16;16;8;9;\n");
             File file = new File(this.getFilesDir().getPath()+"/"+person+petfilename);
 

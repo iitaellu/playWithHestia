@@ -16,9 +16,11 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Scanner;
 
 public class BathroomActivity extends AppCompatActivity {
     String petFile = ".petProfil.csv";
@@ -189,29 +191,30 @@ public class BathroomActivity extends AppCompatActivity {
         Integer hunb, thirb, borb, lonb, smelb, mesb;
 
         String[] petInfo = readFile(petFile,person);
-        header.setText(petInfo[1] + "'s needs");
-        hunb = Integer.parseInt(petInfo[2]);
+        header.setText(petInfo[2] + "'s needs");
+        hunb = Integer.parseInt(petInfo[3]);
         hunb = (hunb*100/20);
         hungry.setText(hunb+"%");
 
-        thirb = Integer.parseInt(petInfo[3]);
+        thirb = Integer.parseInt(petInfo[4]);
         thirb = (thirb*100/20);
         thirsty.setText(thirb+"%");
 
-        borb = Integer.parseInt(petInfo[4]);
+        borb = Integer.parseInt(petInfo[5]);
         borb = (borb*100/20);
         boring.setText(borb+"%");
 
-        lonb = Integer.parseInt(petInfo[5]);
+        lonb = Integer.parseInt(petInfo[6]);
         lonb = (lonb*100/20);
         lonely.setText(lonb+"%");
 
-        smelb = Integer.parseInt(petInfo[6]);
+        smelb = Integer.parseInt(petInfo[7]);
         smelb = (smelb*100/10);
         smelly.setText(smelb+"%");
 
-        mesb = Integer.parseInt(petInfo[7]);
+        mesb = Integer.parseInt(petInfo[8]);
         mesb = (mesb*100/10);
         messy.setText(mesb+"%");
     }
+
 }

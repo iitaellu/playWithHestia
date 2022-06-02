@@ -192,28 +192,28 @@ public class LivingRoomActivity extends AppCompatActivity {
         Integer hunl, thirl, borl, lonl, smell, mesl;
 
         String[] petInfo = readFile(petFile,person);
-        header.setText(petInfo[1] + "'s needs");
-        hunl = Integer.parseInt(petInfo[2]);
+        header.setText(petInfo[2] + "'s needs");
+        hunl = Integer.parseInt(petInfo[3]);
         hunl = (hunl*100/20);
         hungry.setText(hunl+"%");
 
-        thirl = Integer.parseInt(petInfo[3]);
+        thirl = Integer.parseInt(petInfo[4]);
         thirl = (thirl*100/20);
         thirsty.setText(thirl+"%");
 
-        borl = Integer.parseInt(petInfo[4]);
+        borl = Integer.parseInt(petInfo[5]);
         borl = (borl*100/20);
         boring.setText(borl+"%");
 
-        lonl = Integer.parseInt(petInfo[5]);
+        lonl = Integer.parseInt(petInfo[6]);
         lonl = (lonl*100/20);
         lonely.setText(lonl+"%");
 
-        smell = Integer.parseInt(petInfo[6]);
+        smell = Integer.parseInt(petInfo[7]);
         smell = (smell*100/10);
         smelly.setText(smell+"%");
 
-        mesl = Integer.parseInt(petInfo[7]);
+        mesl = Integer.parseInt(petInfo[8]);
         mesl = (mesl*100/10);
         messy.setText(mesl+"%");
     }
