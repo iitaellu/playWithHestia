@@ -16,16 +16,21 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Random;
 import java.util.Scanner;
 
 public class BathroomActivity extends AppCompatActivity {
     String petFile = ".petProfil.csv";
     ImageView pet;
     TextView chat;
+    ImageView box;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +62,13 @@ public class BathroomActivity extends AppCompatActivity {
 
                         switch(menuItem.getItemId()){
                             case R.id.set:
-                                Toast.makeText(getApplicationContext(), "Settings", Toast.LENGTH_LONG).show();
+                                Intent startIntent = new Intent(getApplicationContext(), SettingsActivity.class);
+                                startActivity(startIntent);
                                 return true;
 
                             case R.id.logout:
-                                Intent startIntent = new Intent(getApplicationContext(), MainActivity.class);
-                                startActivity(startIntent);
+                                Intent startIntents = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(startIntents);
                                 return true;
                         }
                         return false;
@@ -85,7 +91,42 @@ public class BathroomActivity extends AppCompatActivity {
         socialise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Socialise", Toast.LENGTH_LONG).show();
+                //Random code part from https://www.youtube.com/watch?v=7zlVvtcMceU
+                Random random = new Random();
+                int val = random.nextInt(3);
+                if (val == 0){
+                    Toast.makeText(getApplicationContext(), "How are You doing?", Toast.LENGTH_LONG).show();
+                    chat.setText("Meow meow!");
+                    pet.setImageResource(R.drawable.hestia_speack);
+                }
+
+                if (val == 1){
+                    Toast.makeText(getApplicationContext(), "Who is pretty?", Toast.LENGTH_LONG).show();
+                    chat.setText("Purr me!");
+                    pet.setImageResource(R.drawable.hestia_speack);
+                }
+
+                if (val == 2){
+                    Toast.makeText(getApplicationContext(), "You are adorable", Toast.LENGTH_LONG).show();
+                    chat.setText("Purr...Meow!");
+                    pet.setImageResource(R.drawable.hestia_speack);
+                }
+                FirebaseAuth fAuth = FirebaseAuth.getInstance();
+                String person = fAuth.getCurrentUser().getUid();
+                String[] petInfo = readFile(petFile,person);
+                writeFile(3,person,"2");
+                new CountDownTimer(5000, 100) {
+                    @Override
+                    public void onTick(long l) {
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        pet.setImageResource(R.drawable.hestia_neutral);
+                        setNeeds();
+                    }
+                }.start();
+
             }
         });
         ImageView bath = (ImageView) findViewById(R.id.bath);
@@ -97,6 +138,10 @@ public class BathroomActivity extends AppCompatActivity {
                 ImageView ba = (ImageView) findViewById(R.id.bath);
                 ba.setImageResource(R.drawable.empty);
                 chat.setText("Purr...");
+                FirebaseAuth fAuth = FirebaseAuth.getInstance();
+                String person = fAuth.getCurrentUser().getUid();
+                String[] petInfo = readFile(petFile,person);
+                writeFile(1,person,"10");
                 //nex counDownTimer part is partly from https://www.codegrepper.com/code-examples/java/countdown+timer+android+studio
                 new CountDownTimer(5000, 100) {
                     @Override
@@ -106,17 +151,24 @@ public class BathroomActivity extends AppCompatActivity {
                     @Override
                     public void onFinish() {
                         pet.setImageResource(R.drawable.hestia_neutral);
-                        chat.setText(":)");
                         ba.setImageResource(R.drawable.bath);
+                        setNeeds();
                     }
                 }.start();
             }
         });
-        ImageView box = (ImageView) findViewById(R.id.box);
+        box = (ImageView) findViewById(R.id.box);
         box.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "clean sandbox", Toast.LENGTH_LONG).show();
+                chat.setText("Purr...meow");
+                FirebaseAuth fAuth = FirebaseAuth.getInstance();
+                String person = fAuth.getCurrentUser().getUid();
+                String[] petInfo = readFile(petFile,person);
+                writeFile(2,person,"10");
+                //nex counDownTimer part is partly from https://www.codegrepper.com/code-examples/java/countdown+timer+android+studio
+                setNeeds();
+                setSandBox();
             }
         });
     }
@@ -157,8 +209,8 @@ public class BathroomActivity extends AppCompatActivity {
 
         chat = (TextView) findViewById(R.id.petChatTextView3);
         pet = (ImageView) findViewById(R.id.PETIMAGE3);
-        setNeeds();
-
+        int wellb = setNeeds();
+        setSandBox();
 
         room.setText("Bathroom");
 
@@ -171,14 +223,13 @@ public class BathroomActivity extends AppCompatActivity {
 
         }
         else {
-            pet.setImageResource(R.drawable.hestia_neutral);
-            chat.setText("Hello!");
+            setMood(wellb);
         }
 
         return;
     }
 
-    public void setNeeds(){
+    public int setNeeds(){
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
         String person = fAuth.getCurrentUser().getUid();
         TextView header = (TextView) findViewById(R.id.petNameBath);
@@ -188,33 +239,144 @@ public class BathroomActivity extends AppCompatActivity {
         TextView lonely = (TextView) findViewById(R.id.textViewLonely3);
         TextView smelly = (TextView) findViewById(R.id.textViewSmelly3);
         TextView messy = (TextView) findViewById(R.id.textViewMessy3);
+        TextView wellBeing = (TextView) findViewById(R.id.wellBeingmeter3);
         Integer hunb, thirb, borb, lonb, smelb, mesb;
+        Integer wellb = 0;
 
         String[] petInfo = readFile(petFile,person);
         header.setText(petInfo[2] + "'s needs");
         hunb = Integer.parseInt(petInfo[3]);
+        wellb = hunb;
         hunb = (hunb*100/20);
         hungry.setText(hunb+"%");
 
         thirb = Integer.parseInt(petInfo[4]);
+        wellb=wellb+thirb;
         thirb = (thirb*100/20);
         thirsty.setText(thirb+"%");
 
         borb = Integer.parseInt(petInfo[5]);
+        wellb=wellb+borb;
         borb = (borb*100/20);
         boring.setText(borb+"%");
 
         lonb = Integer.parseInt(petInfo[6]);
+        wellb=wellb+lonb;
         lonb = (lonb*100/20);
         lonely.setText(lonb+"%");
 
         smelb = Integer.parseInt(petInfo[7]);
+        wellb=wellb+smelb;
         smelb = (smelb*100/10);
         smelly.setText(smelb+"%");
 
         mesb = Integer.parseInt(petInfo[8]);
+        wellb=wellb+mesb;
         mesb = (mesb*100/10);
         messy.setText(mesb+"%");
+
+        wellBeing.setText(wellb+"%");
+        return wellb;
     }
 
+    public void setSandBox(){
+        //TextView chati = (TextView) findViewById(R.id.petChatTextView3);
+        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+        String person = fAuth.getCurrentUser().getUid();
+        String[] petInfo = readFile(petFile,person);
+        int litter = Integer.parseInt(petInfo[8]);
+        box = (ImageView) findViewById(R.id.box);
+        if (litter < 4){
+            box.setImageResource(R.drawable.box_threedayold);
+        }
+        if(litter < 8 && litter >= 4){
+            box.setImageResource(R.drawable.box_twodayold);
+        }
+        if (litter >= 8 && litter < 10){
+            box.setImageResource(R.drawable.bax_dayold);
+        }
+        if (litter == 10){
+            box.setImageResource(R.drawable.bax_clean);
+        }
+    }
+
+    public void writeFile(int id, String person, String edit) {
+        try (FileWriter fw = new FileWriter(this.getFilesDir().getPath() + "/" + person + petFile, true)) {
+            BufferedWriter writer = new BufferedWriter(fw);
+            String[] petInfo = readFile(petFile, person);
+            Calendar calendar = Calendar.getInstance();
+            SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy;HH:mm");
+            String date = format.format(calendar.getTime());
+
+            //for need updates
+            int hung = Integer.parseInt(petInfo[3]);
+            int thir = Integer.parseInt(petInfo[4]);
+            //double bor = Double.parseDouble(petInfo[6]);
+            int bor = Integer.parseInt(petInfo[6]);
+            int sos = Integer.parseInt(petInfo[6]);
+            int mess = Integer.parseInt(petInfo[8]);
+            int smel = Integer.parseInt(petInfo[7]);
+            int minus = Integer.parseInt(edit);
+
+            //Pet has got bath
+            if (id == 1) {
+                writer.append(date + ";" + petInfo[2] + ";" + petInfo[3] + ";" + petInfo[4] + ";" + petInfo[5] + ";" + petInfo[6] + ";" + edit + ";" + petInfo[8] + ";\n");
+                writer.flush();
+                writer.close();
+            }
+            //litter box get cleaning
+            if (id == 2) {
+                writer.append(date + ";" + petInfo[2] + ";" + petInfo[3] + ";" + petInfo[4] + ";" + petInfo[5] + ";" + petInfo[6] + ";" + petInfo[7] + ";" + edit + ";\n");
+                writer.flush();
+                writer.close();
+            }
+
+            //When speack with pegt
+            if (id == 3) {
+
+                int add = Integer.parseInt(edit);
+                sos = sos+add;
+
+                if (add <= 20){
+                    writer.append(date + ";" + petInfo[2] + ";" + petInfo[3] + ";" + petInfo[4] + ";" + petInfo[5] + ";" + sos + ";" + petInfo[7] + ";" + petInfo[8] + ";\n");
+                    writer.flush();
+                    writer.close();
+                }
+                else{
+                    writer.append(date + ";" + petInfo[2] + ";" + petInfo[3] + ";" + petInfo[4] + ";" + petInfo[5] + ";" + "20" + ";" + petInfo[7] + ";" + petInfo[8] + ";\n");
+                    writer.flush();
+                    writer.close();
+                }
+
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setMood (int wellb) {
+        pet = (ImageView) findViewById(R.id.PETIMAGE3);
+        chat = (TextView) findViewById(R.id.petChatTextView3);
+        if (wellb == 100) {
+            pet.setImageResource(R.drawable.hestia);
+            chat.setText("Purr meow!\n\n(Kitty looks happy)");
+        }
+        if (wellb >= 75 && wellb < 100) {
+            pet.setImageResource(R.drawable.hestia_neutral);
+            chat.setText("Meow!\n\n(Kitty looks to be fine)");
+        }
+        if (wellb >= 50 && wellb < 75) {
+            pet.setImageResource(R.drawable.hestia_dissaponted);
+            chat.setText("...\n\n(Kitty looks to be ok)");
+        }
+        if (wellb >= 25 && wellb < 50) {
+            pet.setImageResource(R.drawable.hestia_sad);
+            chat.setText("Yowl\n\n(Kitty looks to be really sad)");
+        }
+        if (wellb >= 0 && wellb< 25) {
+            pet.setImageResource(R.drawable.hestia_mad);
+            chat.setText("hiss\n\n(Kitty looks to be disappointed!)");
+        }
+    }
 }

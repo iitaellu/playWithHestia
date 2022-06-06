@@ -1,9 +1,20 @@
 <resources>
-    <string name="app_name">Play With Hestia</string>
+    <string name="app_name">Play With Meow</string>
     <string name="nameTextView">TextView</string>
 
-    <string-array name="list">
-        <item>Setting</item>
-        <item>Log Out</item>
+    <string-array name="toyList">
+        <item>Mouse</item>
+        <item>Feather toy</item>
     </string-array>
+
+    <string-array name="detail">
+        <item>With this toy your kitty can play alone</item>
+        <item>With this toy your kitty can play with you</item>
+    </string-array>
+
+    <string-array name="picture">
+        <item>one</item>
+        <item>two</item>
+    </string-array>
+
 </resources>

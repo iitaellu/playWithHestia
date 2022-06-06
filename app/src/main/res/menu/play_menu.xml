@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/mouse"
+        android:title="Play with mouse"/>
+    <item
+        android:id="@+id/feather"
+        android:title="Play with feather toy"/>
+    <item
+        android:id="@+id/details"
+        android:title="Show toy details"/>
+</menu>
