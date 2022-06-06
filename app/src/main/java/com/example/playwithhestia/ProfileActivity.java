@@ -38,8 +38,8 @@ public class ProfileActivity extends AppCompatActivity {
         EditText password = (EditText) findViewById(R.id.passwordEditText);
 
         String[] userInfo = readFile(personInfo, person);
-        username.setText(userInfo[0]);
-        pet.setText(userInfo[1]);
+        username.setText(userInfo[2]);
+        pet.setText(userInfo[3]);
         email.setText(fAuth.getCurrentUser().getEmail());
 
         saveButton.setOnClickListener(new View.OnClickListener() {

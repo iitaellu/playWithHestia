@@ -123,7 +123,7 @@ public class BathroomActivity extends AppCompatActivity {
                     @Override
                     public void onFinish() {
                         pet.setImageResource(R.drawable.hestia_neutral);
-                        setNeeds();
+                        setView();
                     }
                 }.start();
 
@@ -150,9 +150,8 @@ public class BathroomActivity extends AppCompatActivity {
 
                     @Override
                     public void onFinish() {
-                        pet.setImageResource(R.drawable.hestia_neutral);
                         ba.setImageResource(R.drawable.bath);
-                        setNeeds();
+                        setView();
                     }
                 }.start();
             }

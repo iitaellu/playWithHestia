@@ -150,9 +150,8 @@ public class SignInActivity extends AppCompatActivity {
         try (FileWriter fw = new FileWriter(this.getFilesDir().getPath() +"/"+ person+fileName, true)) {
             BufferedWriter writer = new BufferedWriter(fw);
             Calendar calendar = Calendar.getInstance();
-            String current = DateFormat.getDateInstance(DateFormat.DATE_FIELD).format(calendar.getTime());
-            SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-            String date = format.format(Date.parse(current));
+            SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy;HH:mm");
+            String date = format.format(calendar.getTime());
             writer.append(date+";"+newname+";");
             writer.flush();
             writer.close();

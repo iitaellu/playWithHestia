@@ -127,7 +127,7 @@ public class KitchenActivity extends AppCompatActivity {
                     @Override
                     public void onFinish() {
                         pet.setImageResource(R.drawable.hestia_neutral);
-                        setNeeds();
+                        setView();
                     }
                 }.start();
 
@@ -155,9 +155,9 @@ public class KitchenActivity extends AppCompatActivity {
 
                     @Override
                     public void onFinish() {
-                        pet.setImageResource(R.drawable.hestia);
+                        //pet.setImageResource(R.drawable.hestia);
                         fe.setImageResource(R.drawable.food_bowl);
-                        setNeeds();
+                        setView();
                     }
                 }.start();
             }
@@ -186,7 +186,7 @@ public class KitchenActivity extends AppCompatActivity {
                     public void onFinish() {
                         pet.setImageResource(R.drawable.hestia);
                         dr.setImageResource(R.drawable.water_cup);
-                        setNeeds();
+                        setView();
                     }
                 }.start();            }
         });

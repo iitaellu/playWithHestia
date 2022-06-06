@@ -18,7 +18,19 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class MainActivity extends AppCompatActivity {
+
+    String profileFile = ".Profil.csv";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
         EditText email = (EditText) findViewById(R.id.editEmailLogIn);
         EditText password = (EditText) findViewById(R.id.editPasswordLogIn);
         FirebaseAuth fAuth = (FirebaseAuth) FirebaseAuth.getInstance();
-        //ProgressBar progressBar = findViewById(R.id.progressBar);
 
         Button logInButton = (Button) findViewById(R.id.loginButton);
         logInButton.setOnClickListener(new View.OnClickListener() {
@@ -48,13 +59,13 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                //progresBar.setVisibility(View.VISIBLE);
-
                 fAuth.signInWithEmailAndPassword(mail, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
+                            String userID = fAuth.getCurrentUser().getUid();
+                            writeFile(userID);
                             Intent startIntent = new Intent(getApplicationContext(), LivingRoomActivity.class);
                             startActivity(startIntent);
                         }
@@ -72,5 +83,51 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(startIntent);
             }
         });
+    }
+
+    //From the old project
+    public String[] readFile(String filename,String person) {
+        BufferedReader br = null;
+        try {
+            String line;
+            String[] lines;
+            br = new BufferedReader(new FileReader(getApplication().getFilesDir().getPath() + "/" + person+filename));
+            StringBuffer buffer = new StringBuffer();
+            while ((line = br.readLine()) != null) {
+                line = line+",";
+                buffer.append(line);
+            }
+            String result = buffer.toString();
+            lines = result.split(",");
+
+            String wanted = lines[lines.length-1];
+            String[] info = wanted.split(";");
+            return info;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (br != null) br.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        String[] info = null;
+        return info;
+    }
+    public void writeFile(String person) {
+        try (FileWriter fw = new FileWriter(this.getFilesDir().getPath() +"/"+ person+profileFile, true)) {
+            BufferedWriter writer = new BufferedWriter(fw);
+            Calendar calendar = Calendar.getInstance();
+            SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy;HH:mm");
+            String date = format.format(calendar.getTime());
+            String[] profileInfo = readFile(profileFile, person);
+
+            writer.append(date+";"+profileInfo[2]+";"+profileInfo[3]+";\n");
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

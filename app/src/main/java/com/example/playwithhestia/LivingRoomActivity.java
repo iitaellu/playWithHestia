@@ -20,13 +20,15 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Random;
 
 public class LivingRoomActivity extends AppCompatActivity {
     String petFile = ".petProfil.csv";
-    int count=0;
+    String profileFile = ".Profil.csv";
     ImageView pet;
     TextView chat;
 
@@ -35,9 +37,13 @@ public class LivingRoomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_living_room);
 
+        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+        String person = fAuth.getCurrentUser().getUid();
         ImageView profile = (ImageView) findViewById(R.id.profile);
         ImageView settings = (ImageView) findViewById(R.id.settings);
         pet = (ImageView) findViewById(R.id.PETIMAGE);
+
+        upDate(person);
 
         setView();
 
@@ -133,7 +139,7 @@ public class LivingRoomActivity extends AppCompatActivity {
                     @Override
                     public void onFinish() {
                         pet.setImageResource(R.drawable.hestia_neutral);
-                        setNeeds();
+                        setView();
                     }
                 }.start();
 
@@ -172,7 +178,7 @@ public class LivingRoomActivity extends AppCompatActivity {
                                     public void onFinish() {
                                         pet.setImageResource(R.drawable.hestia_neutral);
                                         to.setImageResource(R.drawable.toys);
-                                        setNeeds();
+                                        setView();
                                     }
                                 }.start();
                                 return true;
@@ -191,7 +197,7 @@ public class LivingRoomActivity extends AppCompatActivity {
                                     public void onFinish() {
                                         pet.setImageResource(R.drawable.hestia_neutral);
                                         to.setImageResource(R.drawable.toys);
-                                        setNeeds();
+                                        setView();
                                     }
                                 }.start();
                                 return true;
@@ -251,14 +257,16 @@ public class LivingRoomActivity extends AppCompatActivity {
         Calendar now = Calendar.getInstance();
         int hours = now.get(Calendar.HOUR_OF_DAY);
 
-        if (hours >= 21 || hours <=6){
+        setMood(well);
+
+        /*if (hours >= 21 || hours <=6){
             pet.setImageResource(R.drawable.hestia_sleeping);
             chat.setText("Zzz...");
 
         }
         else {
             setMood(well);
-        }
+        }*/
 
         return;
     }
@@ -275,6 +283,8 @@ public class LivingRoomActivity extends AppCompatActivity {
         TextView wellBeing = (TextView) findViewById(R.id.wellBeingmeter);
         Integer hunl, thirl, borl, lonl, smell, mesl;
         Integer welll = 0;
+
+        //upDate(person);
 
         String[] petInfo = readFile(petFile,person);
         header.setText(petInfo[2] + "'s needs");
@@ -324,7 +334,8 @@ public class LivingRoomActivity extends AppCompatActivity {
             int hung = Integer.parseInt(petInfo[3]);
             int thir = Integer.parseInt(petInfo[4]);
             //double bor = Double.parseDouble(petInfo[6]);
-            int bor = Integer.parseInt(petInfo[6]);
+            int bor = Integer.parseInt(petInfo[5]);
+            float boru =Float.parseFloat(petInfo[5]);
             int sos = Integer.parseInt(petInfo[6]);
             int mess = Integer.parseInt(petInfo[8]);
             int smel = Integer.parseInt(petInfo[7]);
@@ -369,6 +380,57 @@ public class LivingRoomActivity extends AppCompatActivity {
                 }
             }
 
+            //upDate When time difference is under 40 hours
+
+            if (id == 4){
+
+                hung = hung-(minus/2);
+                thir = thir-(minus/2);
+                boru = boru-(minus/(3/2));
+
+                //Part to handle float value from https://stackoverflow.com/questions/25673608/how-to-insert-an-image-into-a-listview
+                String floatAsString = (String) String.valueOf(boru);
+                int index = floatAsString.indexOf(".");
+
+                int borintPart = Integer.parseInt(floatAsString.substring(0, index));
+                bor = borintPart;
+
+                if(bor < 0){
+                    bor = 0;
+                }
+
+                sos = sos-minus;
+
+                if (minus >= 24){
+                    smel = smel-2;
+                    mess = mess - 2;
+
+                    if (smel <0){
+                        smel = 0;
+                    }
+                    if (mess < 0){
+                        mess = 0;
+                    }
+                }
+
+                if (hung < 0){
+                    hung = 0;
+                }
+                if (thir < 0){
+                    thir = 0;
+                }
+
+                if (sos < 0){
+                    sos = 0;
+                }
+
+
+                //mess ja smell
+                //Toast.makeText(getApplicationContext(), minus, Toast.LENGTH_SHORT).show();
+                writer.append(date+";"+petInfo[2]+";"+hung+";"+thir+";"+bor+";"+sos+";"+smel+";"+mess+";\n");
+                writer.flush();
+                writer.close();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -398,4 +460,82 @@ public class LivingRoomActivity extends AppCompatActivity {
             chat.setText("hiss\n\n(Kitty looks to be disappointed!)");
         }
     }
+
+    //https://stackoverflow.com/questions/21285161/android-difference-between-two-dates
+    public void upDate (String person){
+
+        String[] petInfo = readFile(petFile,person);
+        String lastDate = petInfo[0] + ";"+ petInfo[1];
+        try {
+            Date last = new SimpleDateFormat("dd.MM.yyyy;HH:mm").parse(lastDate);
+            Date now = new Date();
+            long diff = now.getTime()-last.getTime();
+            int hours = (int) (diff/(1000*60*60));
+            String dif = Integer.toString(hours);
+
+            Toast.makeText(getApplicationContext(), dif, Toast.LENGTH_SHORT).show();
+
+            if (hours <= 40){
+                writeFile(4,person,dif);
+            }
+            /*if (hours > 40 && hours <= 72){
+                writeFile(4,person,dif);
+            }
+            if (hours > 72){
+                writeFile(5,person,dif);
+            }*/
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /*//Follow code from https://www.youtube.com/watch?v=TpyRKom0X_s
+    public void upDate(String person, String inputFile, String newfeed, String newDrink){
+        String tempFile = "temp.csv";
+        File oldFile = new File(getApplication().getFilesDir().getPath() + "/" + person + inputFile);
+        File newFile = new File(tempFile);
+        String ID = "1"; String date = ""; String time = ""; String name = "";
+        String hun = ""; String thir = ""; String bor = "";
+        String sos = ""; String sme = ""; String mes = "";
+
+        try{
+            FileWriter fw = new FileWriter(tempFile, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            Scanner x = new Scanner(new File(getApplication().getFilesDir().getPath() + "/" + person + inputFile));
+            x.useDelimiter(";\n");
+
+            while(x.hasNext()){
+                ID = x.next();
+                date = x.next();
+                time = x.next();
+                name = x.next();
+                hun = x.next();
+                thir = x.next();
+                bor = x.next();
+                sos = x.next();
+                sme = x.next();
+                mes = x.next();
+
+                if (ID.equals("1")){
+                    pw.println(ID+";"+date+";"+time+";"+name+";"+newfeed+";"+newDrink+";"+bor+";"+sos+";"+sme+";"+mes+";");
+                }
+                else{
+                    pw.println(ID+";"+date+";"+time+";"+name+";"+hun+";"+thir+";"+bor+";"+sos+";"+sme+";"+mes+";");
+                }
+            }
+
+            x.close();
+            pw.flush();
+            pw.close();
+            oldFile.delete();
+            File dump = new File (person+inputFile);
+            newFile.renameTo(dump);
+
+        } catch (IOException e) {
+            System.out.println("Error!");
+        }
+
+    }*/
 }
