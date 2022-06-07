@@ -401,7 +401,7 @@ public class LivingRoomActivity extends AppCompatActivity {
 
                 sos = sos-minus;
 
-                if (minus >= 24){
+                /*if (minus >= 24 && minus < 48){
                     smel = smel-2;
                     mess = mess - 2;
 
@@ -411,7 +411,41 @@ public class LivingRoomActivity extends AppCompatActivity {
                     if (mess < 0){
                         mess = 0;
                     }
+                }*/
+
+                int days = minus/24;
+
+                smel = smel-2*days;
+                mess= mess-days;
+
+                if (smel <0){
+                    smel = 0;
                 }
+                if (mess < 0){
+                    mess = 0;
+                }
+
+
+                /*if (minus >= 48 && minus <72){
+                    smel = smel-4;
+                    mess = mess - 4;
+                }
+
+                if (minus >= 72 && minus <96){
+                    smel = smel-6;
+                    mess = mess - 6;
+                }
+
+                if (minus >= 96 && minus <120){
+                    smel = smel-8;
+                    mess = mess - 8;
+                }
+
+                if (minus >= 120 && minus <96){
+                    smel = smel-6;
+                    mess = mess - 6;
+                }*/
+
 
                 if (hung < 0){
                     hung = 0;
@@ -475,15 +509,8 @@ public class LivingRoomActivity extends AppCompatActivity {
 
             Toast.makeText(getApplicationContext(), dif, Toast.LENGTH_SHORT).show();
 
-            if (hours <= 40){
-                writeFile(4,person,dif);
-            }
-            /*if (hours > 40 && hours <= 72){
-                writeFile(4,person,dif);
-            }
-            if (hours > 72){
-                writeFile(5,person,dif);
-            }*/
+            writeFile(4,person,dif);
+
         } catch (ParseException e) {
             e.printStackTrace();
         }

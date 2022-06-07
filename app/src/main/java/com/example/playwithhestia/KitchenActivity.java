@@ -368,9 +368,21 @@ public class KitchenActivity extends AppCompatActivity {
                     sos = 0;
                 }
 
-                if (minus > 24){
+                if (minus > 24 && minus < 48){
                     smel = smel-10/3;
                     mess = mess - 2;
+
+                    if (smel <0){
+                        smel = 0;
+                    }
+                    if (mess < 0){
+                        mess = 0;
+                    }
+                }
+
+                if (minus == 48 && minus <72){
+                    smel = smel-2*(10/3);
+                    mess = mess - 4;
 
                     if (smel <0){
                         smel = 0;
