@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,25 +27,25 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        Button saveButton = (Button) findViewById(R.id.saveButton);
+        Button editButton = (Button) findViewById(R.id.editButton);
         Button backButton = (Button) findViewById(R.id.backButton);
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
         String person = fAuth.getCurrentUser().getUid();
 
-        EditText username = (EditText) findViewById(R.id.userNameEditText);
-        EditText email = (EditText) findViewById(R.id.emailEditText);
-        EditText pet = (EditText) findViewById(R.id.petNameEditText);
-        EditText password = (EditText) findViewById(R.id.passwordEditText);
+        TextView username = (TextView) findViewById(R.id.userNameText);
+        TextView email = (TextView) findViewById(R.id.emailText);
+        TextView pet = (TextView) findViewById(R.id.petNameText);
 
         String[] userInfo = readFile(personInfo, person);
-        username.setText(userInfo[2]);
-        pet.setText(userInfo[3]);
+        username.setText(userInfo[1]);
+        pet.setText(userInfo[2]);
         email.setText(fAuth.getCurrentUser().getEmail());
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
+        editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Changes saved", Toast.LENGTH_LONG).show();
+                Intent startIntent = new Intent(getApplicationContext(), EditProfile.class);
+                startActivity(startIntent);
             }
         });
 

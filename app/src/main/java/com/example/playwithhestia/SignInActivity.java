@@ -51,7 +51,6 @@ public class SignInActivity extends AppCompatActivity {
         EditText password = (EditText) findViewById(R.id.editPassword);
 
         FirebaseAuth fAuth = (FirebaseAuth) FirebaseAuth.getInstance();
-        //ProgressBar progressBar =(ProgressBar) findViewById(R.id.rogressBar);
         FirebaseFirestore fStore = (FirebaseFirestore) FirebaseFirestore.getInstance();
 
         Button backButton = (Button) findViewById(R.id.backButtonSignIn);
@@ -150,7 +149,7 @@ public class SignInActivity extends AppCompatActivity {
         try (FileWriter fw = new FileWriter(this.getFilesDir().getPath() +"/"+ person+fileName, true)) {
             BufferedWriter writer = new BufferedWriter(fw);
             Calendar calendar = Calendar.getInstance();
-            SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy;HH:mm");
+            SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
             String date = format.format(calendar.getTime());
             writer.append(date+";"+newname+";");
             writer.flush();

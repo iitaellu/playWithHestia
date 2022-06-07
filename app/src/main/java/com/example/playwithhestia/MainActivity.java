@@ -30,8 +30,6 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
-    String profileFile = ".Profil.csv";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(getApplicationContext(), "Logged in", Toast.LENGTH_SHORT).show();
-                            String userID = fAuth.getCurrentUser().getUid();
-                            writeFile(userID);
                             Intent startIntent = new Intent(getApplicationContext(), LivingRoomActivity.class);
                             startActivity(startIntent);
                         }
@@ -114,20 +110,5 @@ public class MainActivity extends AppCompatActivity {
         }
         String[] info = null;
         return info;
-    }
-    public void writeFile(String person) {
-        try (FileWriter fw = new FileWriter(this.getFilesDir().getPath() +"/"+ person+profileFile, true)) {
-            BufferedWriter writer = new BufferedWriter(fw);
-            Calendar calendar = Calendar.getInstance();
-            SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy;HH:mm");
-            String date = format.format(calendar.getTime());
-            String[] profileInfo = readFile(profileFile, person);
-
-            writer.append(date+";"+profileInfo[2]+";"+profileInfo[3]+";\n");
-            writer.flush();
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

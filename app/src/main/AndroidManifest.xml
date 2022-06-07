@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".ToyInfo"></activity>
+        <activity android:name=".EditProfile"></activity>
+        <activity android:name=".ToyInfo" />
         <activity android:name=".ToyDetails" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".ProfileActivity" />
