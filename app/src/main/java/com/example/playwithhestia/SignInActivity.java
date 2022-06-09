@@ -45,7 +45,7 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        //Old code from old project
+        //Old code from old project https://github.com/iitaellu/Harkkatyo
         EditText username = (EditText) findViewById(R.id.editUserName);
         EditText email = (EditText) findViewById(R.id.editEmail);
         EditText password = (EditText) findViewById(R.id.editPassword);
@@ -91,7 +91,6 @@ public class SignInActivity extends AppCompatActivity {
                     return;
                 }
 
-                //progressBar.setVisibility(View.VISIBLE);
                 //Sign in user in farebase
                 fAuth.createUserWithEmailAndPassword(mail, pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override

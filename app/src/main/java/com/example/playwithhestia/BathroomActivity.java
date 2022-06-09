@@ -165,14 +165,13 @@ public class BathroomActivity extends AppCompatActivity {
                 String person = fAuth.getCurrentUser().getUid();
                 String[] petInfo = readFile(petFile,person);
                 writeFile(2,person,"10");
-                //nex counDownTimer part is partly from https://www.codegrepper.com/code-examples/java/countdown+timer+android+studio
                 setNeeds();
                 setSandBox();
             }
         });
     }
 
-    //From the old project
+    //From the old project https://github.com/iitaellu/Harkkatyo
     public String[] readFile(String filename,String person) {
         BufferedReader br = null;
         try {
@@ -203,6 +202,7 @@ public class BathroomActivity extends AppCompatActivity {
         return info;
     }
 
+    //This method build view
     public void setView(){
         TextView room = (TextView) findViewById(R.id.room);
 
@@ -228,6 +228,7 @@ public class BathroomActivity extends AppCompatActivity {
         return;
     }
 
+    //Method sets need point's into view
     public int setNeeds(){
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
         String person = fAuth.getCurrentUser().getUid();
@@ -278,8 +279,8 @@ public class BathroomActivity extends AppCompatActivity {
         return wellb;
     }
 
+    //Method sets right picture of sandbox according to the smelly need
     public void setSandBox(){
-        //TextView chati = (TextView) findViewById(R.id.petChatTextView3);
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
         String person = fAuth.getCurrentUser().getUid();
         String[] petInfo = readFile(petFile,person);
@@ -299,6 +300,7 @@ public class BathroomActivity extends AppCompatActivity {
         }
     }
 
+    //partly from old project https://github.com/iitaellu/Harkkatyo
     public void writeFile(int id, String person, String edit) {
         try (FileWriter fw = new FileWriter(this.getFilesDir().getPath() + "/" + person + petFile, true)) {
             BufferedWriter writer = new BufferedWriter(fw);
@@ -307,14 +309,7 @@ public class BathroomActivity extends AppCompatActivity {
             SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy;HH:mm");
             String date = format.format(calendar.getTime());
 
-            //for need updates
-            int hung = Integer.parseInt(petInfo[3]);
-            int thir = Integer.parseInt(petInfo[4]);
-            int bor = Integer.parseInt(petInfo[6]);
             int sos = Integer.parseInt(petInfo[6]);
-            int mess = Integer.parseInt(petInfo[8]);
-            int smel = Integer.parseInt(petInfo[7]);
-            int minus = Integer.parseInt(edit);
 
             //Pet has got bath
             if (id == 1) {
@@ -329,7 +324,7 @@ public class BathroomActivity extends AppCompatActivity {
                 writer.close();
             }
 
-            //When speack with pegt
+            //When speak with pet
             if (id == 3) {
 
                 int add = Integer.parseInt(edit);
@@ -353,6 +348,7 @@ public class BathroomActivity extends AppCompatActivity {
         }
     }
 
+    //method set right picture of cat according to the wellbeingmeter
     public void setMood (int wellb) {
         pet = (ImageView) findViewById(R.id.PETIMAGE3);
         chat = (TextView) findViewById(R.id.petChatTextView3);

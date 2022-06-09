@@ -15,6 +15,8 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+
+        //From the course material https://www.youtube.com/watch?v=6ow3L39Wxmg
         Button git = (Button) findViewById(R.id.gitButton);
         git.setOnClickListener(new View.OnClickListener() {
             @Override

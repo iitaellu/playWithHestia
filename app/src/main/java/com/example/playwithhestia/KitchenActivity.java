@@ -155,7 +155,6 @@ public class KitchenActivity extends AppCompatActivity {
 
                     @Override
                     public void onFinish() {
-                        //pet.setImageResource(R.drawable.hestia);
                         fe.setImageResource(R.drawable.food_bowl);
                         setView();
                     }
@@ -164,7 +163,6 @@ public class KitchenActivity extends AppCompatActivity {
         });
 
         ImageView drink = (ImageView) findViewById(R.id.waterCup);
-        //ImageButton drink = (ImageButton) findViewById(R.id.drinkIB);
         drink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -192,7 +190,7 @@ public class KitchenActivity extends AppCompatActivity {
         });
     }
 
-    //From the old project
+    //From the old project https://github.com/iitaellu/Harkkatyo
     public String[] readFile(String filename,String person) {
         BufferedReader br = null;
         try {
@@ -243,6 +241,7 @@ public class KitchenActivity extends AppCompatActivity {
 
     }
 
+    //Method sets need point's into view
     public int setNeeds(){
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
         String person = fAuth.getCurrentUser().getUid();
@@ -256,8 +255,6 @@ public class KitchenActivity extends AppCompatActivity {
         TextView wellBeing = (TextView) findViewById(R.id.wellBeingmeter2);
         chat = (TextView) findViewById(R.id.petChatTextView2);
         pet = (ImageView) findViewById(R.id.PETIMAGE2);
-
-        //upDate(person);
 
         Integer hunk, thirk, bork, lonk, smelk, mesk;
         Integer wellk = 0;
@@ -298,7 +295,7 @@ public class KitchenActivity extends AppCompatActivity {
         return wellk;
     }
 
-    //This method write data in file. partly from old project
+    //This method write data in file. partly from old project https://github.com/iitaellu/Harkkatyo
     public void writeFile(int id, String person, String edit) {
         try (FileWriter fw = new FileWriter(this.getFilesDir().getPath()+"/"+person+petFile, true)) {
             BufferedWriter writer = new BufferedWriter(fw);
@@ -307,15 +304,7 @@ public class KitchenActivity extends AppCompatActivity {
             SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy;HH:mm");
             String date = format.format(calendar.getTime());
 
-            //for need updates
-            int hung = Integer.parseInt(petInfo[3]);
-            int thir = Integer.parseInt(petInfo[4]);
-            //double bor = Double.parseDouble(petInfo[6]);
-            int bor = Integer.parseInt(petInfo[6]);
             int sos = Integer.parseInt(petInfo[6]);
-            int mess = Integer.parseInt(petInfo[8]);
-            int smel = Integer.parseInt(petInfo[7]);
-            int minus = Integer.parseInt(edit);
 
             //Pet has got food
             if (id == 1){
@@ -352,31 +341,31 @@ public class KitchenActivity extends AppCompatActivity {
         }
     }
 
-
-        public void setMood (int well) {
-            pet = (ImageView) findViewById(R.id.PETIMAGE2);
-            chat = (TextView) findViewById(R.id.petChatTextView2);
-            if (well == 100) {
-                pet.setImageResource(R.drawable.hestia);
-                chat.setText("Purr meow!\n\n(Kitty looks happy)");
-            }
-            if (well >= 75 && well < 100) {
-                pet.setImageResource(R.drawable.hestia_neutral);
-                chat.setText("Meow!\n\n(Kitty looks to be fine)");
-            }
-            if (well >= 50 && well < 75) {
-                pet.setImageResource(R.drawable.hestia_dissaponted);
-                chat.setText("...\n\n(Kitty looks to be ok)");
-            }
-            if (well >= 25 && well < 50) {
-                pet.setImageResource(R.drawable.hestia_sad);
-                chat.setText("Yowl\n\n(Kitty looks to be really sad)");
-            }
-            if (well >= 0 && well < 25) {
-                pet.setImageResource(R.drawable.hestia_mad);
-                chat.setText("hiss\n\n(Kitty looks to be disappointed!)");
-            }
+    //method set right picture of cat according to the wellbeingmeter
+    public void setMood (int well) {
+        pet = (ImageView) findViewById(R.id.PETIMAGE2);
+        chat = (TextView) findViewById(R.id.petChatTextView2);
+        if (well == 100) {
+            pet.setImageResource(R.drawable.hestia);
+            chat.setText("Purr meow!\n\n(Kitty looks happy)");
         }
+        if (well >= 75 && well < 100) {
+            pet.setImageResource(R.drawable.hestia_neutral);
+            chat.setText("Meow!\n\n(Kitty looks to be fine)");
+        }
+        if (well >= 50 && well < 75) {
+            pet.setImageResource(R.drawable.hestia_dissaponted);
+            chat.setText("...\n\n(Kitty looks to be ok)");
+        }
+        if (well >= 25 && well < 50) {
+            pet.setImageResource(R.drawable.hestia_sad);
+            chat.setText("Yowl\n\n(Kitty looks to be really sad)");
+        }
+        if (well >= 0 && well < 25) {
+            pet.setImageResource(R.drawable.hestia_mad);
+            chat.setText("hiss\n\n(Kitty looks to be disappointed!)");
+        }
+    }
 
 
 

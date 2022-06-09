@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class ToyAdapter extends BaseAdapter {
+    ////https://www.youtube.com/watch?v=rdGpT1pIJlw
     LayoutInflater mInflater;
     String[] toys;
     String[] details;

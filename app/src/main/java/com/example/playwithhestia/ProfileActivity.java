@@ -58,19 +58,7 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
-    //From the old project
-    //With this method will updae pet information in the file
-    public void writeFile(String petname, String person) {
-        try (FileWriter fw = new FileWriter(this.getFilesDir().getPath() +"/"+ person+petInfo, true)) {
-            BufferedWriter writer = new BufferedWriter(fw);
-            writer.append(petname+";\n");
-            writer.flush();
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    //From the old project
+    //From the old project https://github.com/iitaellu/Harkkatyo
     public String[] readFile(String filename,String person) {
         BufferedReader br = null;
         try {

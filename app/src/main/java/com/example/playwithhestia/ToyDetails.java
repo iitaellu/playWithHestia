@@ -17,6 +17,7 @@ public class ToyDetails extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //https://www.youtube.com/watch?v=rdGpT1pIJlw
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tou_details);
 

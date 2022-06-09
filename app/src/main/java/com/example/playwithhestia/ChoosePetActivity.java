@@ -53,7 +53,7 @@ public class ChoosePetActivity extends AppCompatActivity {
         });
     }
 
-    //With this method will pet's name saved to the file
+    //With this method will pet's name saved to the file, from https://github.com/iitaellu/Harkkatyo
     public void writeFile(String petname, String person) {
         try (FileWriter fw = new FileWriter(this.getFilesDir().getPath() +"/"+ person+fileName, true)) {
             BufferedWriter writer = new BufferedWriter(fw);

@@ -54,7 +54,6 @@ public class EditProfile extends AppCompatActivity {
                 String person = fAuth.getCurrentUser().getUid();
 
                 String profile[] = readFile(personInfo, person);
-                //String pet[] = readFile(petInfo, person);
 
                 String newName = name.getText().toString();
                 Toast.makeText(getApplicationContext(), newName, Toast.LENGTH_SHORT).show();
@@ -110,7 +109,7 @@ public class EditProfile extends AppCompatActivity {
         });
     }
 
-    //From the old project
+    //From the old project https://github.com/iitaellu/Harkkatyo
     public String[] readFile(String filename,String person) {
         BufferedReader br = null;
         try {
@@ -141,6 +140,7 @@ public class EditProfile extends AppCompatActivity {
         return info;
     }
 
+    //Partly from https://github.com/iitaellu/Harkkatyo
     public void writeFile(int id, String newName, String pet, String person, String fileName) {
         try (FileWriter fw = new FileWriter(this.getFilesDir().getPath() +"/"+ person+fileName, true)) {
             BufferedWriter writer = new BufferedWriter(fw);

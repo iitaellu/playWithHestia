@@ -213,7 +213,7 @@ public class LivingRoomActivity extends AppCompatActivity {
             }
         });
     }
-    //From the old project
+    //From the old project https://github.com/iitaellu/Harkkatyo
     public String[] readFile(String filename,String person) {
         BufferedReader br = null;
         try {
@@ -244,7 +244,7 @@ public class LivingRoomActivity extends AppCompatActivity {
         return info;
     }
 
-
+    //Method sets need point's into view
     public void setView(){
         TextView room = (TextView) findViewById(R.id.room);
 
@@ -375,7 +375,7 @@ public class LivingRoomActivity extends AppCompatActivity {
                 }
             }
 
-            //upDate
+            //upDates need point
             if (id == 4){
 
                 hung = hung-(minus/2);
@@ -428,6 +428,7 @@ public class LivingRoomActivity extends AppCompatActivity {
         }
     }
 
+    //method set right picture of cat according to the wellbeingmeter
     public void setMood (int well){
         pet = (ImageView) findViewById(R.id.PETIMAGE);
         chat = (TextView) findViewById(R.id.petChatTextView);
@@ -454,6 +455,7 @@ public class LivingRoomActivity extends AppCompatActivity {
     }
 
     //https://stackoverflow.com/questions/21285161/android-difference-between-two-dates
+    //This method check time difference between last date and current date and send variables to writeFile to update needs
     public void upDate (String person){
 
         String[] petInfo = readFile(petFile,person);

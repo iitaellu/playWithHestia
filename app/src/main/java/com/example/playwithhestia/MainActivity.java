@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //From the old course project
+        //From the old course project https://github.com/iitaellu/Harkkatyo
         EditText email = (EditText) findViewById(R.id.editEmailLogIn);
         EditText password = (EditText) findViewById(R.id.editPasswordLogIn);
         FirebaseAuth fAuth = (FirebaseAuth) FirebaseAuth.getInstance();
@@ -79,36 +79,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(startIntent);
             }
         });
-    }
-
-    //From the old project
-    public String[] readFile(String filename,String person) {
-        BufferedReader br = null;
-        try {
-            String line;
-            String[] lines;
-            br = new BufferedReader(new FileReader(getApplication().getFilesDir().getPath() + "/" + person+filename));
-            StringBuffer buffer = new StringBuffer();
-            while ((line = br.readLine()) != null) {
-                line = line+",";
-                buffer.append(line);
-            }
-            String result = buffer.toString();
-            lines = result.split(",");
-
-            String wanted = lines[lines.length-1];
-            String[] info = wanted.split(";");
-            return info;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (br != null) br.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-        String[] info = null;
-        return info;
     }
 }
