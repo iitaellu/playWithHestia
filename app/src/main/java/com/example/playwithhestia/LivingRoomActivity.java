@@ -257,16 +257,14 @@ public class LivingRoomActivity extends AppCompatActivity {
         Calendar now = Calendar.getInstance();
         int hours = now.get(Calendar.HOUR_OF_DAY);
 
-        setMood(well);
-
-        /*if (hours >= 21 || hours <=6){
+        if (hours >= 21 || hours <=6){
             pet.setImageResource(R.drawable.hestia_sleeping);
             chat.setText("Zzz...");
 
         }
         else {
             setMood(well);
-        }*/
+        }
 
         return;
     }
@@ -283,8 +281,6 @@ public class LivingRoomActivity extends AppCompatActivity {
         TextView wellBeing = (TextView) findViewById(R.id.wellBeingmeter);
         Integer hunl, thirl, borl, lonl, smell, mesl;
         Integer welll = 0;
-
-        //upDate(person);
 
         String[] petInfo = readFile(petFile,person);
         header.setText(petInfo[2] + "'s needs");
@@ -333,7 +329,6 @@ public class LivingRoomActivity extends AppCompatActivity {
             //for need updates
             int hung = Integer.parseInt(petInfo[3]);
             int thir = Integer.parseInt(petInfo[4]);
-            //double bor = Double.parseDouble(petInfo[6]);
             int bor = Integer.parseInt(petInfo[5]);
             float boru =Float.parseFloat(petInfo[5]);
             int sos = Integer.parseInt(petInfo[6]);
@@ -347,7 +342,7 @@ public class LivingRoomActivity extends AppCompatActivity {
                 writer.flush();
                 writer.close();
             }
-            //When speack with pegt
+            //When speak with pet
             if (id == 2) {
 
                 int add = Integer.parseInt(edit);
@@ -380,8 +375,7 @@ public class LivingRoomActivity extends AppCompatActivity {
                 }
             }
 
-            //upDate When time difference is under 40 hours
-
+            //upDate
             if (id == 4){
 
                 hung = hung-(minus/2);
@@ -401,18 +395,6 @@ public class LivingRoomActivity extends AppCompatActivity {
 
                 sos = sos-minus;
 
-                /*if (minus >= 24 && minus < 48){
-                    smel = smel-2;
-                    mess = mess - 2;
-
-                    if (smel <0){
-                        smel = 0;
-                    }
-                    if (mess < 0){
-                        mess = 0;
-                    }
-                }*/
-
                 int days = minus/24;
 
                 smel = smel-2*days;
@@ -425,28 +407,6 @@ public class LivingRoomActivity extends AppCompatActivity {
                     mess = 0;
                 }
 
-
-                /*if (minus >= 48 && minus <72){
-                    smel = smel-4;
-                    mess = mess - 4;
-                }
-
-                if (minus >= 72 && minus <96){
-                    smel = smel-6;
-                    mess = mess - 6;
-                }
-
-                if (minus >= 96 && minus <120){
-                    smel = smel-8;
-                    mess = mess - 8;
-                }
-
-                if (minus >= 120 && minus <96){
-                    smel = smel-6;
-                    mess = mess - 6;
-                }*/
-
-
                 if (hung < 0){
                     hung = 0;
                 }
@@ -458,8 +418,6 @@ public class LivingRoomActivity extends AppCompatActivity {
                     sos = 0;
                 }
 
-
-                //mess ja smell
                 //Toast.makeText(getApplicationContext(), minus, Toast.LENGTH_SHORT).show();
                 writer.append(date+";"+petInfo[2]+";"+hung+";"+thir+";"+bor+";"+sos+";"+smel+";"+mess+";\n");
                 writer.flush();
@@ -506,9 +464,6 @@ public class LivingRoomActivity extends AppCompatActivity {
             long diff = now.getTime()-last.getTime();
             int hours = (int) (diff/(1000*60*60));
             String dif = Integer.toString(hours);
-
-            Toast.makeText(getApplicationContext(), dif, Toast.LENGTH_SHORT).show();
-
             writeFile(4,person,dif);
 
         } catch (ParseException e) {

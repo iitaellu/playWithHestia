@@ -310,7 +310,6 @@ public class BathroomActivity extends AppCompatActivity {
             //for need updates
             int hung = Integer.parseInt(petInfo[3]);
             int thir = Integer.parseInt(petInfo[4]);
-            //double bor = Double.parseDouble(petInfo[6]);
             int bor = Integer.parseInt(petInfo[6]);
             int sos = Integer.parseInt(petInfo[6]);
             int mess = Integer.parseInt(petInfo[8]);

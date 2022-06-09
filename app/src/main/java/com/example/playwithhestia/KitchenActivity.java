@@ -346,146 +346,12 @@ public class KitchenActivity extends AppCompatActivity {
                     writer.close();
                 }
             }
-            //upDate When time difference is under 40 hours
 
-            if (id == 4){
-
-                hung = hung-(minus/2);
-                thir = thir-(minus/2);
-                //bor = bor-(minus/1.5);
-                sos = sos-minus;
-
-                if (hung < 0){
-                    hung = 0;
-                }
-                if (thir < 0){
-                    thir = 0;
-                }
-                /*if(bor < 0){ //Ei osaa käsitellä doublea nyt jossain vaiheessa. käsittele!
-                    bor = 0;
-                }*/
-                if (sos < 0){
-                    sos = 0;
-                }
-
-                if (minus > 24 && minus < 48){
-                    smel = smel-10/3;
-                    mess = mess - 2;
-
-                    if (smel <0){
-                        smel = 0;
-                    }
-                    if (mess < 0){
-                        mess = 0;
-                    }
-                }
-
-                if (minus == 48 && minus <72){
-                    smel = smel-2*(10/3);
-                    mess = mess - 4;
-
-                    if (smel <0){
-                        smel = 0;
-                    }
-                    if (mess < 0){
-                        mess = 0;
-                    }
-                }
-                //mess ja smell
-
-                writer.append(date+";"+petInfo[2]+";"+hung+";"+thir+";"+bor+";"+sos+";"+petInfo[7]+";"+petInfo[8]+";\n");
-                writer.flush();
-                writer.close();
-            }
-            //upDate when time difference is over 40 hours and days under three days
-            // (hungry, thirsty -20, boring -20, sosial - 20, smel -editx2, mess - editx1
-            if (id == 5){
-
-                String hungs = "0";
-                String thirs = "0";
-                String bors = "0";
-                String soss = "0";
-
-                if (minus < 48){
-                    smel = smel-10/3;
-                    mess = mess - 2;
-                }
-
-                if (minus >= 48 && minus <72){
-                    smel = smel-2*(10/3);
-                    mess = mess - 4;
-                }
-
-                if (minus == 72){
-                    smel = smel - 3*(10/3) ;
-                    mess = mess- 6;
-                }
-
-                if (smel <0){
-                    smel = 0;
-                }
-
-                if (mess < 0){
-                    mess = 0;
-                }
-
-                writer.append(date+";"+petInfo[2]+";"+hungs+";"+thirs+";"+bors+";"+soss+";"+smel+";"+mess+";\n");
-                writer.flush();
-                writer.close();
-            }
-
-            //
-            if (id == 6){
-
-                String hungs = "0";
-                String thirs = "0";
-                String bors = "0";
-                String soss = "0";
-                String messs = "0";
-                String smels = "";
-
-                if (minus <= 96){
-                    smels = "2";
-                }
-                if (minus > 96){
-                    smels = "0";
-                }
-
-                writer.append(date+";"+petInfo[2]+";"+hungs+";"+thirs+";"+bors+";"+soss+";"+smels+";"+messs+";\n");
-                writer.flush();
-                writer.close();
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    //https://stackoverflow.com/questions/21285161/android-difference-between-two-dates
-    public void upDate (String person){
-
-        String[] petInfo = readFile(petFile,person);
-        String lastDate = petInfo[0] + ";"+ petInfo[1];
-        try {
-            Date last = new SimpleDateFormat("dd.MM.yyyy;HH:mm").parse(lastDate);
-            Date now = new Date();
-            long diff = now.getTime()-last.getTime();
-            int hours = (int) (diff/(1000*60*60));
-            String dif = Integer.toString(hours);
-
-            if (hours <= 40){
-                writeFile(3,person,dif);
-            }
-            /*if (hours > 40 && hours <= 72){
-                writeFile(4,person,dif);
-            }
-            if (hours > 72){
-                writeFile(5,person,dif);
-            }*/
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-    }
 
         public void setMood (int well) {
             pet = (ImageView) findViewById(R.id.PETIMAGE2);
@@ -511,6 +377,10 @@ public class KitchenActivity extends AppCompatActivity {
                 chat.setText("hiss\n\n(Kitty looks to be disappointed!)");
             }
         }
+
+
+
+
 
     /*//Follow code from https://www.youtube.com/watch?v=TpyRKom0X_s
     public void upDate(String person, String inputFile, String newfeed, String newDrink){

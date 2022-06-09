@@ -1,5 +1,6 @@
 package com.example.playwithhestia;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -10,7 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -43,6 +50,7 @@ public class EditProfile extends AppCompatActivity {
                 EditText petName = (EditText) findViewById(R.id.petNameEditText);
                 EditText password = (EditText) findViewById(R.id.passWordEditText);
                 FirebaseAuth fAuth = FirebaseAuth.getInstance();
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 String person = fAuth.getCurrentUser().getUid();
 
                 String profile[] = readFile(personInfo, person);
@@ -57,6 +65,31 @@ public class EditProfile extends AppCompatActivity {
                 String newPetName = petName.getText().toString();
                 if (TextUtils.isEmpty(newPetName)){
                     newPetName = profile[2];
+                }
+
+                String newEmail = email.getText().toString();
+                if (!newEmail.isEmpty()) {
+                    //https://itnext.io/android-firebase-authentication-email-and-password-login-b06980cf864a
+                    if (newEmail.contains("@gmail.com") || newEmail.contains("@hotmail.com")) {
+                        user.updateEmail(newEmail);
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "Email has to be gmail or hotmail", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+                String pattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&+=]).{12,}";
+                String newPass = password.getText().toString();
+
+                if (!newPass.isEmpty()){
+                    if(!newPass.matches(pattern)){
+                        Toast.makeText(getApplicationContext(), "Password must have at least: 12 character, one uppercase, one number and one symbol", Toast.LENGTH_SHORT).show();
+
+                    }
+                    else{
+                        user.updatePassword(newPass);
+                    }
+
                 }
 
                 writeFile(1, newName, newPetName,person,personInfo);
@@ -137,4 +170,9 @@ public class EditProfile extends AppCompatActivity {
         }
     }
 
+
+    /*public void updateRecord(String email){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user.updateEmail();
+    }*/
 }
