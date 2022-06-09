@@ -169,10 +169,4 @@ public class EditProfile extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-
-    /*public void updateRecord(String email){
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        user.updateEmail();
-    }*/
 }
