@@ -17,14 +17,12 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Random;
-import java.util.Scanner;
 
 public class BathroomActivity extends AppCompatActivity {
     String petFile = ".petProfil.csv";
@@ -97,19 +95,19 @@ public class BathroomActivity extends AppCompatActivity {
                 if (val == 0){
                     Toast.makeText(getApplicationContext(), "How are You doing?", Toast.LENGTH_LONG).show();
                     chat.setText("Meow meow!");
-                    pet.setImageResource(R.drawable.hestia_speack);
+                    pet.setImageResource(R.drawable.meow_speack);
                 }
 
                 if (val == 1){
                     Toast.makeText(getApplicationContext(), "Who is pretty?", Toast.LENGTH_LONG).show();
                     chat.setText("Purr me!");
-                    pet.setImageResource(R.drawable.hestia_speack);
+                    pet.setImageResource(R.drawable.meow_speack);
                 }
 
                 if (val == 2){
                     Toast.makeText(getApplicationContext(), "You are adorable", Toast.LENGTH_LONG).show();
                     chat.setText("Purr...Meow!");
-                    pet.setImageResource(R.drawable.hestia_speack);
+                    pet.setImageResource(R.drawable.meow_speack);
                 }
                 FirebaseAuth fAuth = FirebaseAuth.getInstance();
                 String person = fAuth.getCurrentUser().getUid();
@@ -122,7 +120,7 @@ public class BathroomActivity extends AppCompatActivity {
 
                     @Override
                     public void onFinish() {
-                        pet.setImageResource(R.drawable.hestia_neutral);
+                        pet.setImageResource(R.drawable.meow_neutral);
                         setView();
                     }
                 }.start();
@@ -134,7 +132,7 @@ public class BathroomActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                pet.setImageResource(R.drawable.hestia_bath);
+                pet.setImageResource(R.drawable.meow_bath);
                 ImageView ba = (ImageView) findViewById(R.id.bath);
                 ba.setImageResource(R.drawable.empty);
                 chat.setText("Purr...");
@@ -217,7 +215,7 @@ public class BathroomActivity extends AppCompatActivity {
         int hours = now.get(Calendar.HOUR_OF_DAY);
 
         if (hours >= 21 || hours <=6){
-            pet.setImageResource(R.drawable.hestia_sleeping);
+            pet.setImageResource(R.drawable.meow_sleeping);
             chat.setText("Zzz...");
 
         }
@@ -353,23 +351,23 @@ public class BathroomActivity extends AppCompatActivity {
         pet = (ImageView) findViewById(R.id.PETIMAGE3);
         chat = (TextView) findViewById(R.id.petChatTextView3);
         if (wellb == 100) {
-            pet.setImageResource(R.drawable.hestia);
+            pet.setImageResource(R.drawable.meow);
             chat.setText("Purr meow!\n\n(Kitty looks happy)");
         }
         if (wellb >= 75 && wellb < 100) {
-            pet.setImageResource(R.drawable.hestia_neutral);
+            pet.setImageResource(R.drawable.meow_neutral);
             chat.setText("Meow!\n\n(Kitty looks to be fine)");
         }
         if (wellb >= 50 && wellb < 75) {
-            pet.setImageResource(R.drawable.hestia_dissaponted);
+            pet.setImageResource(R.drawable.meow_dissaponted);
             chat.setText("...\n\n(Kitty looks to be ok)");
         }
         if (wellb >= 25 && wellb < 50) {
-            pet.setImageResource(R.drawable.hestia_sad);
+            pet.setImageResource(R.drawable.meow_sad);
             chat.setText("Yowl\n\n(Kitty looks to be really sad)");
         }
         if (wellb >= 0 && wellb< 25) {
-            pet.setImageResource(R.drawable.hestia_mad);
+            pet.setImageResource(R.drawable.meow_mad);
             chat.setText("hiss\n\n(Kitty looks to be disappointed!)");
         }
     }

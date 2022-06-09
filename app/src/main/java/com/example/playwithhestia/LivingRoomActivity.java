@@ -113,19 +113,19 @@ public class LivingRoomActivity extends AppCompatActivity {
                 if (val == 0){
                     Toast.makeText(getApplicationContext(), "How are You doing?", Toast.LENGTH_LONG).show();
                     chat.setText("Meow meow!");
-                    pet.setImageResource(R.drawable.hestia_speack);
+                    pet.setImageResource(R.drawable.meow_speack);
                 }
 
                 if (val == 1){
                     Toast.makeText(getApplicationContext(), "Who is pretty?", Toast.LENGTH_LONG).show();
                     chat.setText("Purr me!");
-                    pet.setImageResource(R.drawable.hestia_speack);
+                    pet.setImageResource(R.drawable.meow_speack);
                 }
 
                 if (val == 2){
                     Toast.makeText(getApplicationContext(), "You are adorable", Toast.LENGTH_LONG).show();
                     chat.setText("Purr...Meow!");
-                    pet.setImageResource(R.drawable.hestia_speack);
+                    pet.setImageResource(R.drawable.meow_speack);
                 }
                 FirebaseAuth fAuth = FirebaseAuth.getInstance();
                 String person = fAuth.getCurrentUser().getUid();
@@ -138,7 +138,7 @@ public class LivingRoomActivity extends AppCompatActivity {
 
                     @Override
                     public void onFinish() {
-                        pet.setImageResource(R.drawable.hestia_neutral);
+                        pet.setImageResource(R.drawable.meow_neutral);
                         setView();
                     }
                 }.start();
@@ -167,7 +167,7 @@ public class LivingRoomActivity extends AppCompatActivity {
                         switch(menuItem.getItemId()){
                             case R.id.mouse:
                                 chat.setText("...");
-                                pet.setImageResource(R.drawable.hestia_play_mice);
+                                pet.setImageResource(R.drawable.meow_play_mice);
                                 writeFile(3,person,"2");
                                 new CountDownTimer(5000, 100) {
                                     @Override
@@ -176,7 +176,7 @@ public class LivingRoomActivity extends AppCompatActivity {
 
                                     @Override
                                     public void onFinish() {
-                                        pet.setImageResource(R.drawable.hestia_neutral);
+                                        pet.setImageResource(R.drawable.meow_neutral);
                                         to.setImageResource(R.drawable.toys);
                                         setView();
                                     }
@@ -185,7 +185,7 @@ public class LivingRoomActivity extends AppCompatActivity {
 
                             case R.id.feather:
                                 chat.setText("Purr mreow!");
-                                pet.setImageResource(R.drawable.hestia_play_featers);
+                                pet.setImageResource(R.drawable.meow_play_featers);
 
                                 writeFile(3,person,"4");
                                 new CountDownTimer(5000, 100) {
@@ -195,7 +195,7 @@ public class LivingRoomActivity extends AppCompatActivity {
 
                                     @Override
                                     public void onFinish() {
-                                        pet.setImageResource(R.drawable.hestia_neutral);
+                                        pet.setImageResource(R.drawable.meow_neutral);
                                         to.setImageResource(R.drawable.toys);
                                         setView();
                                     }
@@ -258,7 +258,7 @@ public class LivingRoomActivity extends AppCompatActivity {
         int hours = now.get(Calendar.HOUR_OF_DAY);
 
         if (hours >= 21 || hours <=6){
-            pet.setImageResource(R.drawable.hestia_sleeping);
+            pet.setImageResource(R.drawable.meow_sleeping);
             chat.setText("Zzz...");
 
         }
@@ -433,23 +433,23 @@ public class LivingRoomActivity extends AppCompatActivity {
         pet = (ImageView) findViewById(R.id.PETIMAGE);
         chat = (TextView) findViewById(R.id.petChatTextView);
         if (well == 100){
-            pet.setImageResource(R.drawable.hestia);
+            pet.setImageResource(R.drawable.meow);
             chat.setText("Purr meow!\n\n(Kitty looks happy)");
         }
         if (well >= 75 && well < 100){
-            pet.setImageResource(R.drawable.hestia_neutral);
+            pet.setImageResource(R.drawable.meow_neutral);
             chat.setText("Meow!\n\n(Kitty looks to be fine)");
         }
         if (well >= 50 && well < 75){
-            pet.setImageResource(R.drawable.hestia_dissaponted);
+            pet.setImageResource(R.drawable.meow_dissaponted);
             chat.setText("...\n\n(Kitty looks to be ok)");
         }
         if (well >= 25 && well < 50){
-            pet.setImageResource(R.drawable.hestia_sad);
+            pet.setImageResource(R.drawable.meow_sad);
             chat.setText("Yowl\n\n(Kitty looks to be really sad)");
         }
         if (well >= 0 && well < 25){
-            pet.setImageResource(R.drawable.hestia_mad);
+            pet.setImageResource(R.drawable.meow_mad);
             chat.setText("hiss\n\n(Kitty looks to be disappointed!)");
         }
     }
