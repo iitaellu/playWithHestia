@@ -8,7 +8,7 @@ Name: Ida Kirveskoski
 
 Project: Course project
 
-About application: This is simple tamagottchi style game where user take car of cat namen Meow. This is project to my course and this idea was improve and show my current coding skills. In the game user can rename pet and take care about it. User can speack, play feed and give Meow water and bath and clean the sandbox. This is still raw version of the game and there is still possibility do make much more developing with it. User have to log in to play the game.
+About application: This is simple tamagotchi style game where user take car of cat namen Meow. This is project to my course and this idea was improve and show my current coding skills. In the game user can rename pet and take care about it. User can speack, play feed and give Meow water and bath and clean the sandbox. This is still raw version of the game and there is still possibility do make much more developing with it. User have to log in to play the game.
 
 ![image](https://user-images.githubusercontent.com/78799868/173347834-22278ffe-e53d-4123-9316-2b1e0c1c9d13.png)
 
