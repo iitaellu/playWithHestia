@@ -17,6 +17,6 @@ You may find this link useful: https://www.geeksforgeeks.org/how-to-clone-androi
 
 
 
-Video: 
+Video: https://drive.google.com/file/d/148aiaiw8xhfxdEulLQFoa1VYfrL0dewK/view?usp=sharing
 
 Learning diery: https://lut-my.sharepoint.com/:w:/g/personal/ida_kirveskoski_student_lut_fi/EWbbqJ0VC4tJuG9yXM_CAGsBFJaARshDxcd3mGfl6ABBgA?e=ACLgEz
