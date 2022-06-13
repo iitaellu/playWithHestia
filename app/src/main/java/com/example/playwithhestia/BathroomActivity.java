@@ -328,7 +328,7 @@ public class BathroomActivity extends AppCompatActivity {
                 int add = Integer.parseInt(edit);
                 sos = sos+add;
 
-                if (add <= 20){
+                if (sos <= 20){
                     writer.append(date + ";" + petInfo[2] + ";" + petInfo[3] + ";" + petInfo[4] + ";" + petInfo[5] + ";" + sos + ";" + petInfo[7] + ";" + petInfo[8] + ";\n");
                     writer.flush();
                     writer.close();

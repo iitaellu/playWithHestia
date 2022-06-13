@@ -314,7 +314,7 @@ public class KitchenActivity extends AppCompatActivity {
                 writer.close();
             }
 
-            //When speack with pegt
+            //When speak with pet
             if (id == 3) {
 
                 int add = Integer.parseInt(edit);
