@@ -15,6 +15,7 @@ About application: This is simple tamagotchi style game where user take care of 
 
 How to run: Click the green "Code" button and copy HTTPS. Open your Android Studio and click new-> Project from Version Control. Window will open. put Version Control to Git if it is not already it and put the HTTPS to URL and press "Clone". Then run the code clicking green start button.
 You may find this link useful: https://www.geeksforgeeks.org/how-to-clone-android-project-from-github-in-android-studio/
+I used Pixel 2 API 30 as my running device I recommend to use that.
 
 
 
