@@ -11,7 +11,9 @@ About application: This is simple tamagottchi style game where user take car of 
 ![image](https://user-images.githubusercontent.com/78799868/173347834-22278ffe-e53d-4123-9316-2b1e0c1c9d13.png)
 
 
-How to run: download 
+How to run: Click the green "Code" button and copy HTTPS. Open your Android Studio and click new-> Project from Version Control. Window open. Choose Version Control to Git if it is not already it and past the HTTPS to URL and press "Clone". Then run the code clicking green start button.
+
+You may find this link useful: https://www.geeksforgeeks.org/how-to-clone-android-project-from-github-in-android-studio/
 
 
 
