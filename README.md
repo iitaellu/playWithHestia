@@ -25,5 +25,7 @@ Learning diery: https://lut-my.sharepoint.com/:w:/g/personal/ida_kirveskoski_stu
 
 Other Course works:
 https://github.com/iitaellu/MobileCoursePart1
+
 https://github.com/iitaellu/mobileModulePart2
+
 https://github.com/iitaellu/mobileModulePart3
