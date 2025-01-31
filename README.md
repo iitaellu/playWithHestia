@@ -1,4 +1,4 @@
-# playWithMeow
+# playWithMeow - Mobile
 
 ![image](https://user-images.githubusercontent.com/78799868/173347950-b107c578-6053-43ae-914f-f1872dd00395.png)
 
